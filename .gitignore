@@ -1,0 +1,7 @@
+# npm
+.env
+
+# dependencies
+node_modules
+
+*.pem
