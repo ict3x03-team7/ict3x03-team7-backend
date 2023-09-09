@@ -2,21 +2,29 @@
   "name": "ict3x03-team7-backend",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon src/index.js",
-    "database": "chmod -R 777 * && cd ./docker && sh start_database.sh"
+    "database": "chmod -R 777 * && cd ./docker && sh start_database.sh",
+    "remigrate-database": "cd ./scripts && sh remigrate.sh",
+    "prisma-ui": "prisma studio"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.0.1",
+    "prisma": "^5.2.0"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.409.0",
+    "@aws-sdk/s3-request-presigner": "^3.409.0",
+    "@prisma/client": "^5.2.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
   }
 }

@@ -1,8 +1,8 @@
-const express = require("express");
-const router = express.Router();
+import express from "express";
+const equipmentRouter = express.Router();
 
-router.get("/", async (req, res) => {
+equipmentRouter.get("/", async (req, res) => {
   res.json({ message: "You are a equipment" });
 });
 
-module.exports = router;
+export default equipmentRouter;
