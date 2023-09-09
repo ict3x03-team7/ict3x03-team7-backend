@@ -1,7 +1,10 @@
-const express = require("express");
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import equipmentRouter from "./infra/http/routes/equipment.js";
+import userRouter from "./infra/http/routes/user.js";
+
 const app = express();
-const cors = require("cors");
-const dotenv = require("dotenv");
 dotenv.config();
 const port = process.env.PORT;
 
@@ -12,10 +15,6 @@ app.use(
 );
 
 app.use(express.json());
-
-const userRouter = require("./infra/http/routes/user");
-
-const equipmentRouter = require("./infra/http/routes/equipment");
 
 app.use("/user", userRouter);
 app.use("/equipment", equipmentRouter);

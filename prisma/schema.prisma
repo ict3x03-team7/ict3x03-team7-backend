@@ -1,0 +1,13 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model dummy {
+  DummyID Bytes  @id @default(dbgenerated("(uuid_to_bin(uuid(),true))")) @db.Binary(16)
+  Name    String @db.VarChar(255)
+}

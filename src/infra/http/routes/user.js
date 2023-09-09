@@ -1,8 +1,8 @@
-const express = require("express");
-const router = express.Router();
+import express from "express";
+const userRouter = express.Router();
 
-router.get("/", async (req, res) => {
+userRouter.get("/", async (req, res) => {
   res.json({ message: "You are a user" });
 });
 
-module.exports = router;
+export default userRouter;
