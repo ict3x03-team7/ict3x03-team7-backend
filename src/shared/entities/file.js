@@ -8,7 +8,7 @@ class FileProps {
 }
 
 class File extends Entity {
-  constructor(props, id) {
-    super(props, id);
+  constructor(id) {
+    super(id);
   }
 }
