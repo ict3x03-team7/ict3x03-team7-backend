@@ -1,10 +1,10 @@
-import express from "express";
-import cors from "cors";
-import dotenv from "dotenv";
-import equipmentRouter from "./infra/http/routes/equipment.js";
-import userRouter from "./infra/http/routes/user.js";
-import dummyRouter from "./infra/http/routes/dummy.js";
-import morgan from "morgan";
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const equipmentRouter = require("./infra/http/routes/equipment.js");
+const userRouter = require("./infra/http/routes/user.js");
+const dummyRouter = require("./infra/http/routes/dummy.js");
+const morgan = require("morgan");
 
 const app = express();
 dotenv.config();

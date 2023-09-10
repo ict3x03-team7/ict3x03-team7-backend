@@ -1,9 +1,9 @@
-import {
+const {
   GetDummyByNameRequestDTO,
   GetDummyByNameResponseDTO,
-} from "../../dto/getDummyByNameDTO.js";
+} = require("../../dto/getDummyByNameDTO.js");
 
-export class GetDummyByNameController {
+class GetDummyByNameController {
   constructor(GetDummyByName) {
     this.GetDummyByName = GetDummyByName;
   }
@@ -12,7 +12,7 @@ export class GetDummyByNameController {
     const name = req.params.name;
 
     const requestDTO = new GetDummyByNameRequestDTO(req.params.name);
-    console.log(requestDTO);
+    // console.log(requestDTO);
 
     try {
       const result = await this.GetDummyByName.execute(requestDTO);
@@ -28,3 +28,5 @@ export class GetDummyByNameController {
     }
   }
 }
+
+module.exports = GetDummyByNameController;

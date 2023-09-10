@@ -1,6 +1,6 @@
-import DummyMapper from "../../mapper/dummyMap.js";
+const DummyMapper = require("../../mapper/dummyMap");
 
-export class GetDummyByName {
+class GetDummyByName {
   constructor(dummyRepo) {
     this.dummyRepo = dummyRepo;
   }
@@ -12,12 +12,18 @@ export class GetDummyByName {
     let dummyResult;
 
     try {
-      dummyResult = await this.dummyRepo.getDummy(dummyName);
-      const responseDTO = DummyMapper.toGetDummyByNameResponseDTO(dummyResult);
-      return responseDTO;
+      dummyResult = await this.dummyRepo.getDummyByName(dummyName);
+      // console.log(dummyResult);
+      if (dummyResult) {
+        const responseDTO =
+          DummyMapper.toGetDummyByNameResponseDTO(dummyResult);
+        return responseDTO;
+      }
     } catch (err) {
       console.error(err);
       resizeBy.status(500).json({ Error: "Server Error" });
     }
   }
 }
+
+module.exports = GetDummyByName;

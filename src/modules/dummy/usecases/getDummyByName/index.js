@@ -1,7 +1,7 @@
-import { PrismaInstance } from "../../../../shared/infra/prisma.js";
-import PrismaDummyRepo from "../../repositories/prismaDummyRepo.js";
-import { GetDummyByName } from "./getDummyByName.js";
-import { GetDummyByNameController } from "./getDummyByNameController.js";
+const PrismaInstance = require("../../../../shared/infra/prisma.js");
+const PrismaDummyRepo = require("../../repositories/prismaDummyRepo.js");
+const GetDummyByName = require("./getDummyByName");
+const GetDummyByNameController = require("./getDummyByNameController.js");
 
 const prismaDummyRepo = new PrismaDummyRepo(PrismaInstance);
 
@@ -9,4 +9,4 @@ const getDummyByName = new GetDummyByName(prismaDummyRepo);
 
 const getDummyByNameController = new GetDummyByNameController(getDummyByName);
 
-export default getDummyByNameController;
+module.exports = getDummyByNameController;

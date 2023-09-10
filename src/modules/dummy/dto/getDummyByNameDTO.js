@@ -1,12 +1,14 @@
-export class GetDummyByNameRequestDTO {
+class GetDummyByNameRequestDTO {
   constructor(dummyName) {
     this.dummyName = dummyName;
   }
 }
 
-export class GetDummyByNameResponseDTO {
+class GetDummyByNameResponseDTO {
   constructor(dummyID, dummyName) {
     this.dummyID = dummyID;
     this.dummyName = dummyName;
   }
 }
+
+module.exports = { GetDummyByNameRequestDTO, GetDummyByNameResponseDTO };

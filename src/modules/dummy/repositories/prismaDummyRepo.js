@@ -1,10 +1,10 @@
-import DummyMapper from "../mapper/dummyMap.js";
-export default class PrismaDummyRepo {
+const DummyMapper = require("../mapper/dummyMap.js");
+class PrismaDummyRepo {
   constructor(prisma) {
     this.prisma = prisma;
   }
 
-  async getDummy(name) {
+  async getDummyByName(name) {
     try {
       const dummy = await this.prisma.dummy.findFirst({
         where: {
@@ -22,3 +22,5 @@ export default class PrismaDummyRepo {
     }
   }
 }
+
+module.exports = PrismaDummyRepo;
