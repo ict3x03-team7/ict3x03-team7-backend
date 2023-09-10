@@ -1,10 +1,11 @@
-export class Dummy {
+import { Entity } from "../../../shared/entities/entity.js";
+export class Dummy extends Entity {
   constructor(id, name) {
     super(id);
-    this.name = name;
+    this.Name = name;
   }
 
   getName() {
-    return this.name;
+    return this.Name;
   }
 }

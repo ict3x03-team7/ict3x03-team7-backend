@@ -25,7 +25,7 @@ with open(csv_file_path, 'r') as file:
 
 
     for row in csv_data:
-        generatedUUID = uuid.uuid1()
+        generatedUUID = uuid.uuid4()
         DummyID = generatedUUID.bytes
         Name = row[0]
         values.append((DummyID, Name))
