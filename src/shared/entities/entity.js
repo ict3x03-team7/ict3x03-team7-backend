@@ -1,6 +1,6 @@
-import { v4 as uuidv4 } from "uuid";
+const { v4: uuidv4 } = require("uuid");
 
-export class Entity {
+class Entity {
   constructor(id) {
     if (this.constructor === Entity) {
       console.error("Can't instantiate abstract class");
@@ -11,3 +11,5 @@ export class Entity {
     return this.id;
   }
 }
+
+module.exports = Entity;

@@ -1,8 +1,8 @@
-import { Dummy } from "../entities/dummy.js";
-import convertBufferToUUID from "../../../shared/utils/convertBufferToUUID.js";
-import { GetDummyByNameResponseDTO } from "../dto/getDummyByNameDTO.js";
+const Dummy = require("../entities/dummy.js");
+const convertBufferToUUID = require("../../../shared/utils/convertBufferToUUID");
+const { GetDummyByNameResponseDTO } = require("../dto/getDummyByNameDTO");
 
-export default class DummyMapper {
+class DummyMapper {
   constructor() {}
 
   static toDomain(dummyPersistance) {
@@ -19,3 +19,5 @@ export default class DummyMapper {
     return new GetDummyByNameResponseDTO(mappedDummy.id, mappedDummy.Name);
   }
 }
+
+module.exports = DummyMapper;

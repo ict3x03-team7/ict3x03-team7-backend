@@ -1,5 +1,5 @@
-import { Entity } from "../../../shared/entities/entity.js";
-export class Dummy extends Entity {
+const Entity = require("../../../shared/entities/entity");
+class Dummy extends Entity {
   constructor(id, name) {
     super(id);
     this.Name = name;
@@ -9,3 +9,5 @@ export class Dummy extends Entity {
     return this.Name;
   }
 }
+
+module.exports = Dummy;
