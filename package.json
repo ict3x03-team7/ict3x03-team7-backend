@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --coverage",
+    "test": "cucumber-js",
     "init-test": "jest --init",
     "start": "nodemon src/index.js",
     "database": "chmod -R 777 * && cd ./docker && sh start_database.sh",
@@ -25,6 +25,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
+    "helmet": "^7.0.0",
     "morgan": "^1.10.0",
     "uuid": "^9.0.0"
   }
