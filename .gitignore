@@ -6,4 +6,8 @@ node_modules
 
 *.pem
 
+#testing
 coverage
+
+*.sh-e
+*.DS_Store
