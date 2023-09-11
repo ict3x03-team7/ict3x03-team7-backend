@@ -12,4 +12,10 @@ describe("GET /dummy/:dummyName", () => {
     const response = await request(app).get("/dummy/dummy5");
     expect(response.statusCode).toBe(400);
   });
+  test("content type header is JSON", async () => {
+    const response = await request(app).get("/dummy/dummy2");
+    expect(response.headers["content-type"]).toEqual(
+      expect.stringContaining("json")
+    );
+  });
 });
