@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cucumber-js",
+    "test": "npx jest --verbose --coverage",
     "init-test": "jest --init",
     "start": "nodemon src/index.js",
     "database": "chmod -R 777 * && cd ./docker && sh start_database.sh",
@@ -17,7 +17,8 @@
   "devDependencies": {
     "jest": "^29.6.4",
     "nodemon": "^3.0.1",
-    "prisma": "^5.2.0"
+    "prisma": "^5.2.0",
+    "supertest": "^6.3.3"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.409.0",
