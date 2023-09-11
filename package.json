@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "test": "npx jest --verbose --coverage",
-    "init-test": "jest --init",
     "start": "nodemon src/index.js",
     "database": "chmod -R 777 * && cd ./docker && sh start_database.sh",
     "remigrate-database": "cd ./scripts && sh remigrate.sh",
