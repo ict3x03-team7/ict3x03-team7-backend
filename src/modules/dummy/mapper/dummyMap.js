@@ -1,12 +1,15 @@
 const Dummy = require("../entities/dummy.js");
-const convertBufferToUUID = require("../../../shared/utils/convertBufferToUUID");
+const {
+  convertUUIDFromBuffer,
+} = require("./../../../shared/utils/generateUUID.js");
 const { GetDummyByNameResponseDTO } = require("../dto/getDummyByNameDTO");
+const generateBuffer = require("./../../../shared/utils/generateBuffer.js");
 
 class DummyMapper {
   constructor() {}
 
   static toDomain(dummyPersistance) {
-    const domainUUID = convertBufferToUUID(dummyPersistance.DummyID);
+    const domainUUID = convertUUIDFromBuffer(dummyPersistance.DummyID);
     const mapped = new Dummy(domainUUID, dummyPersistance.Name);
     if (mapped) {
       return mapped;
