@@ -1,20 +1,19 @@
 class MockDummyRepo {
-  constructor(mockDummies) {
+  constructor(mockDummies, throwError) {
     this.mockDummies = mockDummies;
-    this.throwError = false;
+    this.throwError = throwError;
     this.numberOfTimesGetDummyByNameIsCalled = 0;
   }
 
   async getDummyByName(name) {
     this.numberOfTimesGetDummyByNameIsCalled++;
     this.simulateError();
-    for (dummy in this.mockDummies) {
-      if (dummy.Name == name) {
+    for (const dummy of this.mockDummies) {
+      if (dummy.Name === name) {
         return dummy;
-      } else {
-        return null;
       }
     }
+    return null;
   }
   simulateError() {
     if (this.throwError) {
