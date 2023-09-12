@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const dotenv = require("dotenv");
 const equipmentRouter = require("./infra/http/routes/equipment");
 const userRouter = require("./infra/http/routes/user");
 const dummyRouter = require("./infra/http/routes/dummy");
@@ -8,8 +7,6 @@ const morgan = require("morgan");
 const helmet = require("helmet");
 
 const app = express();
-dotenv.config();
-const port = process.env.PORT;
 
 app.use(
   cors({

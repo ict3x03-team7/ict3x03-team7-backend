@@ -1,14 +1,9 @@
 import { Entity } from "./entity";
 
-class FileProps {
-  constructor(originalFileName, fileSize) {
+class File extends Entity {
+  constructor(id, originalFileName, fileSize) {
+    super(id);
     this.originalFileName = originalFileName;
     this.fileSize = fileSize;
-  }
-}
-
-class File extends Entity {
-  constructor(id) {
-    super(id);
   }
 }

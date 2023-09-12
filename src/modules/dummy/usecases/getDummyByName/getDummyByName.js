@@ -15,13 +15,15 @@ class GetDummyByName {
       dummyResult = await this.dummyRepo.getDummyByName(dummyName);
       // console.log(dummyResult);
       if (dummyResult) {
+        // console.log("dummy's id: ", dummyResult.getId());
         const responseDTO =
           DummyMapper.toGetDummyByNameResponseDTO(dummyResult);
         return responseDTO;
       }
     } catch (err) {
       console.error(err);
-      resizeBy.status(500).json({ Error: "Server Error" });
+      // res.status(500).json({ Error: "Server Error" });
+      throw new Error("Server/Database is down");
     }
   }
 }
