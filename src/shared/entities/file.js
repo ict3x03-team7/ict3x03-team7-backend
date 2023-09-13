@@ -1,4 +1,4 @@
-const Entity = require("./entity");
+const Entity = require('./entity');
 
 class File extends Entity {
   constructor(id, originalFileName, fileSize) {

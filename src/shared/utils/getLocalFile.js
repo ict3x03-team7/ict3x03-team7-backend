@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require('fs');
 
 // Function to read a file
 async function getFileFromLocal(filePath) {

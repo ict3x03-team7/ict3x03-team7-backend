@@ -1,9 +1,5 @@
-const {
-  PutObjectCommand,
-  GetObjectCommand,
-  DeleteObjectCommand,
-} = require("@aws-sdk/client-s3");
-const { getSignedUrl } = require("@aws-sdk/s3-request-presigner");
+const { PutObjectCommand, GetObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
+const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 
 class S3FileService {
   constructor(s3Instance) {
@@ -24,8 +20,8 @@ class S3FileService {
       // console.log(presignedUrl);
       return presignedUrl;
     } catch (error) {
-      console.error("Error:", error);
-      throw new Error("Error: File cannot be retrieved");
+      console.error('Error:', error);
+      throw new Error('Error: File cannot be retrieved');
     }
   }
 
@@ -40,8 +36,8 @@ class S3FileService {
       await this.s3Client.send(putObjectCommand);
       return true;
     } catch (error) {
-      console.error("Error:", error);
-      throw new Error("Error: File cannot be added");
+      console.error('Error:', error);
+      throw new Error('Error: File cannot be added');
     }
   }
   async deleteFile(file) {
@@ -53,8 +49,8 @@ class S3FileService {
       const result = await this.s3Client.send(deleteObjectCommand);
       return true;
     } catch (error) {
-      console.error("Error:", error);
-      throw new Error("Error: File cannot be deleted");
+      console.error('Error:', error);
+      throw new Error('Error: File cannot be deleted');
     }
   }
 }

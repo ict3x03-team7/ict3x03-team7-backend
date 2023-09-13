@@ -1,4 +1,4 @@
-const DummyMapper = require("../../mapper/dummyMap");
+const DummyMapper = require('../../mapper/dummyMap');
 
 class GetDummyByName {
   constructor(dummyRepo) {
@@ -16,14 +16,13 @@ class GetDummyByName {
       // console.log(dummyResult);
       if (dummyResult) {
         // console.log("dummy's id: ", dummyResult.getId());
-        const responseDTO =
-          DummyMapper.toGetDummyByNameResponseDTO(dummyResult);
+        const responseDTO = DummyMapper.toGetDummyByNameResponseDTO(dummyResult);
         return responseDTO;
       }
     } catch (err) {
       console.error(err);
       // res.status(500).json({ Error: "Server Error" });
-      throw new Error("Server/Database is down");
+      throw new Error('Server/Database is down');
     }
   }
 }

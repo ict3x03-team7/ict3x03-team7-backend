@@ -1,5 +1,5 @@
-const { S3Client } = require("@aws-sdk/client-s3");
-const dotenv = require("dotenv");
+const { S3Client } = require('@aws-sdk/client-s3');
+const dotenv = require('dotenv');
 dotenv.config();
 
 const S3Instance = new S3Client({

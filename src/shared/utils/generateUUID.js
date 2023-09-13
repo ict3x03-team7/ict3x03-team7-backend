@@ -1,4 +1,4 @@
-const { v4: uuidv4, parse } = require("uuid");
+const { v4: uuidv4, parse } = require('uuid');
 
 function generateUUID() {
   return uuidv4();

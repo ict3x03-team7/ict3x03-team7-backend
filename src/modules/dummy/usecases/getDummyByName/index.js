@@ -1,7 +1,7 @@
-const PrismaInstance = require("../../../../shared/infra/prisma.js");
-const PrismaDummyRepo = require("../../repositories/prismaDummyRepo.js");
-const GetDummyByName = require("./getDummyByName");
-const GetDummyByNameController = require("./getDummyByNameController.js");
+const PrismaInstance = require('../../../../shared/infra/prisma.js');
+const PrismaDummyRepo = require('../../repositories/prismaDummyRepo.js');
+const GetDummyByName = require('./getDummyByName');
+const GetDummyByNameController = require('./getDummyByNameController.js');
 
 const prismaDummyRepo = new PrismaDummyRepo(PrismaInstance);
 

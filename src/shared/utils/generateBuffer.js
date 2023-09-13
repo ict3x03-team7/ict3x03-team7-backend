@@ -1,4 +1,4 @@
-const { parse } = require("uuid");
+const { parse } = require('uuid');
 
 function generateBuffer(uuid) {
   return parse(uuid);
