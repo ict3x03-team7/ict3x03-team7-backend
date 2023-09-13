@@ -1,4 +1,4 @@
-const DummyMapper = require("../mapper/dummyMap.js");
+const DummyMapper = require('../mapper/dummyMap.js');
 class PrismaDummyRepo {
   constructor(prisma) {
     this.prisma = prisma;
@@ -18,7 +18,7 @@ class PrismaDummyRepo {
       return mappedDummy;
     } catch (err) {
       console.error(err);
-      throw new Error("Server Error");
+      throw new Error('Server Error');
     }
   }
 }

@@ -1,4 +1,4 @@
-const Entity = require("../../../shared/entities/entity");
+const Entity = require('../../../shared/entities/entity');
 class Dummy extends Entity {
   constructor(id, name) {
     super(id);

@@ -17,7 +17,7 @@ class MockDummyRepo {
   }
   simulateError() {
     if (this.throwError) {
-      throw new Error("Simulated error from repository.");
+      throw new Error('Simulated error from repository.');
     }
   }
   getNumberOfTimesGetDummyByNameIsCalled() {

@@ -1,9 +1,7 @@
-const Dummy = require("../entities/dummy.js");
-const {
-  convertUUIDFromBuffer,
-} = require("./../../../shared/utils/generateUUID.js");
-const { GetDummyByNameResponseDTO } = require("../dto/getDummyByNameDTO");
-const generateBuffer = require("./../../../shared/utils/generateBuffer.js");
+const Dummy = require('../entities/dummy.js');
+const { convertUUIDFromBuffer } = require('./../../../shared/utils/generateUUID.js');
+const { GetDummyByNameResponseDTO } = require('../dto/getDummyByNameDTO');
+const generateBuffer = require('./../../../shared/utils/generateBuffer.js');
 
 class DummyMapper {
   constructor() {}
@@ -14,7 +12,7 @@ class DummyMapper {
     if (mapped) {
       return mapped;
     } else {
-      throw new Error("Dummy Mapping Failed");
+      throw new Error('Dummy Mapping Failed');
     }
   }
 
