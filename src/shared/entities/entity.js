@@ -1,4 +1,3 @@
-const { v4: uuidv4 } = require('uuid');
 const validateUUID = require('../utils/validateUUID');
 const { generateUUID } = require('../utils/generateUUID');
 
