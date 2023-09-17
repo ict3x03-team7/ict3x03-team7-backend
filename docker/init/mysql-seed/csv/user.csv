@@ -1,0 +1,3 @@
+UserID,FirstName,LastName,Email,Password,Role,Gender,MobileNumber,LastLogin,StudentID,ProfilePictureID
+64b70b67-e4a9-4682-a1d7-e9310af12754,Sumaya,Stokes,sumayastokes@gmail.com,$2b$13$jrUHD0PErjwloAm.2fYR4eTiK5dDCcHkOI/trnfC72HZmxCVDoQ3m,Admin,Female,86517611,,,15ccf901-4d59-4d89-8ec6-4ec5c4acbdaa
+3e7c727a-2fb1-4b72-9300-b385f742e347,Aleksander,Blake,aleksanderblake@gmail.com,$2b$13$1VRuMrMmi5foduMZNtEzIuNltO2ZeEDBrTI1AYVnKDNYMNPMGrcNm,Student,Male,90012376,,2341191,e7e2ed40-fae5-404f-b723-948517d3575d
