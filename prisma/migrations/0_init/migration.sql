@@ -26,7 +26,7 @@ CREATE TABLE `user` (
     `Gender` VARCHAR(32) NOT NULL,
     `MobileNumber` INTEGER NOT NULL,
     `LastLogin` TIMESTAMP(0) NULL,
-    `PersonnelID` VARCHAR(255) NULL,
+    `StudentID` VARCHAR(255) NULL,
     `ProfilePictureID` BINARY(16) NULL DEFAULT (uuid_to_bin(uuid(),true)),
 
     UNIQUE INDEX `Email`(`Email`),
