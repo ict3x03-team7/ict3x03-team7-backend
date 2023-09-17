@@ -41,7 +41,7 @@ CREATE TABLE `user`
   `Email` VARCHAR
 (255) NOT NULL UNIQUE,
   `Password` VARCHAR
-(32) NOT NULL,
+(127) NOT NULL,
   `Role` VARCHAR
 (32) NOT NULL,
   `Gender` VARCHAR

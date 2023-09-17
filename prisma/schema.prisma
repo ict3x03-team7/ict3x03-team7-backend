@@ -24,7 +24,7 @@ model user {
   FirstName        String    @db.VarChar(255)
   LastName         String    @db.VarChar(255)
   Email            String    @unique(map: "Email") @db.VarChar(255)
-  Password         String    @db.VarChar(32)
+  Password         String    @db.VarChar(127)
   Role             String    @db.VarChar(32)
   Gender           String    @db.VarChar(32)
   MobileNumber     Int
