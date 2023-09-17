@@ -21,7 +21,7 @@ CREATE TABLE `user` (
     `FirstName` VARCHAR(255) NOT NULL,
     `LastName` VARCHAR(255) NOT NULL,
     `Email` VARCHAR(255) NOT NULL,
-    `Password` VARCHAR(32) NOT NULL,
+    `Password` VARCHAR(127) NOT NULL,
     `Role` VARCHAR(32) NOT NULL,
     `Gender` VARCHAR(32) NOT NULL,
     `MobileNumber` INTEGER NOT NULL,
