@@ -18,7 +18,7 @@ docker-compose build
 docker-compose up --detach --remove-orphans
 
 # Wait for the containers to be up and running
-until mysqladmin ping -h 127.0.0.1 -P 3310 -u root --password="$MYSQL_ROOT_PASSWORD" --silent; do
+until mysqladmin ping -h 127.0.0.1 -P 3323 -u root --password="$MYSQL_ROOT_PASSWORD" --silent; do
     echo "Waiting for MySQL to start..."
     sleep 1
 done
@@ -27,7 +27,7 @@ echo "*****************************************************"
 echo "TABLES CREATED:"
 echo "*****************************************************"
 # Check Tables Created!
-mysql -h 127.0.0.1 -P 3310 -u root --password="$MYSQL_ROOT_PASSWORD" -e "SHOW TABLES;" EquipHub
+mysql -h 127.0.0.1 -P 3323 -u root --password="$MYSQL_ROOT_PASSWORD" -e "SHOW TABLES;" EquipHub
 
 until ! docker ps --quiet --filter "name=docker-mysql-seed-1" | grep -q "docker-mysql-seed-1"; do
     echo "*****************************************************"

@@ -11,3 +11,27 @@ model dummy {
   DummyID Bytes  @id @default(dbgenerated("(uuid_to_bin(uuid(),true))")) @db.Binary(16)
   Name    String @db.VarChar(255)
 }
+
+model file {
+  FileID           Bytes  @id @default(dbgenerated("(uuid_to_bin(uuid(),true))")) @db.Binary(16)
+  OriginalFileName String @db.VarChar(1024)
+  FileSize         Int
+  user             user[]
+}
+
+model user {
+  UserID           Bytes     @id @default(dbgenerated("(uuid_to_bin(uuid(),true))")) @db.Binary(16)
+  FirstName        String    @db.VarChar(255)
+  LastName         String    @db.VarChar(255)
+  Email            String    @unique(map: "Email") @db.VarChar(255)
+  Password         String    @db.VarChar(32)
+  Role             String    @db.VarChar(32)
+  Gender           String    @db.VarChar(32)
+  MobileNumber     Int
+  LastLogin        DateTime? @db.Timestamp(0)
+  PersonnelID      String?   @db.VarChar(255)
+  ProfilePictureID Bytes?    @default(dbgenerated("(uuid_to_bin(uuid(),true))")) @db.Binary(16)
+  file             file?     @relation(fields: [ProfilePictureID], references: [FileID], onDelete: NoAction, onUpdate: NoAction, map: "ProfilePictureID")
+
+  @@index([ProfilePictureID], map: "ProfilePictureIDFK_idx")
+}

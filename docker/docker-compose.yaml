@@ -1,4 +1,4 @@
-version: "3.1"
+version: '3.1'
 
 services:
   mysql-db:
@@ -13,7 +13,7 @@ services:
     volumes:
       - ./init/01-createTables.sql:/docker-entrypoint-initdb.d/01-createTables.sql
     ports:
-      - "3310:3306"
+      - '3323:3306'
 
   mysql-seed:
     build: ./init/mysql-seed
