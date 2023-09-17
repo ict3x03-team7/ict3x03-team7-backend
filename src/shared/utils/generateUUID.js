@@ -4,8 +4,8 @@ function generateUUID() {
   return uuidv4();
 }
 
-function convertUUIDStringToBuffer(inputString) {
-  return parse(inputString);
+function convertUUIDToBuffer(inputUUID) {
+  return parse(inputUUID);
 }
 
 function convertUUIDFromBuffer(inputBuffer) {
@@ -14,6 +14,6 @@ function convertUUIDFromBuffer(inputBuffer) {
 
 module.exports = {
   generateUUID,
-  convertUUIDStringToBuffer,
+  convertUUIDToBuffer,
   convertUUIDFromBuffer,
 };

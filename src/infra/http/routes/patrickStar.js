@@ -8,7 +8,7 @@ const S3Instance = require('./../../../shared/infra/s3');
 const File = require('./../../../shared/entities/file');
 const {
   generateUUID,
-  convertUUIDStringToBuffer,
+  convertUUIDToBuffer,
   convertUUIDFromBuffer,
 } = require('./../../../shared/utils/generateUUID');
 
@@ -32,7 +32,7 @@ patrickStarRouter.delete('/:uuid', async (req, res) => {
   const s3FileService = new S3FileService(S3Instance);
   const fileID = req.params.uuid;
   const result = await s3FileService.deleteFile(
-    new File(convertUUIDFromBuffer(convertUUIDStringToBuffer(fileID)), 'patrickstar.png', 52),
+    new File(convertUUIDFromBuffer(convertUUIDToBuffer(fileID)), 'patrickstar.png', 52),
   );
   if (result) {
     return res.json({ result: 'File was deleted' });
