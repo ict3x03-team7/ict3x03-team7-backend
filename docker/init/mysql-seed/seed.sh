@@ -11,6 +11,12 @@ python SEED00-wait.py
 echo "Seeding Start"
 python SEED00-dummy.py
 
+echo "Seeding File Table"
+python SEED01-File.py
+
+echo "Seeding User Table"
+python SEED02-User.py
+
 echo "*****************************************************"
 echo "FINISH SEEDING!"
 echo "*****************************************************"
