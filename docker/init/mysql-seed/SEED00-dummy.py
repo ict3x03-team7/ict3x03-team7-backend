@@ -8,7 +8,7 @@ db_connection = mysql.connector.connect(
     port='3306', 
     user='root',
     password= os.getenv('MYSQL_ROOT_PASSWORD'),  
-    database='EquipHub'
+    database=os.getenv('MYSQL_DATABASE')
 )
 
 current_directory = os.getcwd()
