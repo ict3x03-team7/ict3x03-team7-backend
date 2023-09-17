@@ -1,4 +1,4 @@
-USE EquipHub;
+USE RecipeHub;
 
 CREATE TABLE `dummy`
 (

@@ -27,7 +27,7 @@ echo "*****************************************************"
 echo "TABLES CREATED:"
 echo "*****************************************************"
 # Check Tables Created!
-mysql -h 127.0.0.1 -P 3323 -u root --password="$MYSQL_ROOT_PASSWORD" -e "SHOW TABLES;" EquipHub
+mysql -h 127.0.0.1 -P 3323 -u root --password="$MYSQL_ROOT_PASSWORD" -e "SHOW TABLES;" RecipeHub
 
 until ! docker ps --quiet --filter "name=docker-mysql-seed-1" | grep -q "docker-mysql-seed-1"; do
     echo "*****************************************************"
