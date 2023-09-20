@@ -1,8 +1,11 @@
 const { LoginRequestDTO } = require('./../../dto/loginDTO');
+const dotenv = require('dotenv');
+dotenv.config();
 
 class LoginController {
-  constructor(login) {
+  constructor(login, sessionService) {
     this.Login = login;
+    this.SessionService = sessionService;
   }
 
   async execute(req, res) {
@@ -13,7 +16,20 @@ class LoginController {
       if (result.Error) {
         res.status(400).json({ result });
       } else if (result) {
-        res.status(200).json({ result });
+        const sessionExists = await this.SessionService.get(result.userID);
+        if (sessionExists) {
+          res.status(400).json({ Error: 'You are already logged in on another device' });
+        } else {
+          let key;
+          if (req.session) {
+            req.session.userID = result.userID;
+            req.session.role = result.role;
+            key = req.sessionID;
+          }
+          this.SessionService.set(result.userID, key);
+          this.SessionService.expire(result.userID, 60 * process.env.SESSION_TIMEOUT);
+          res.status(200).json({ result });
+        }
       }
     } catch (err) {
       console.error(err);

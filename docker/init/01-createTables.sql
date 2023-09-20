@@ -1,18 +1,5 @@
 USE RecipeHub;
 
-CREATE TABLE `dummy`
-(
-  `DummyID` BINARY
-(16) NOT NULL DEFAULT
-(UUID_TO_BIN
-(UUID
-(), TRUE)),
-  `Name` VARCHAR
-(255) NOT NULL,
-  PRIMARY KEY
-(`DummyID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 CREATE TABLE `file`
 (
   `FileID` BINARY

@@ -7,11 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model dummy {
-  DummyID Bytes  @id @default(dbgenerated("(uuid_to_bin(uuid(),true))")) @db.Binary(16)
-  Name    String @db.VarChar(255)
-}
-
 model file {
   FileID           Bytes  @id @default(dbgenerated("(uuid_to_bin(uuid(),true))")) @db.Binary(16)
   OriginalFileName String @db.VarChar(1024)
