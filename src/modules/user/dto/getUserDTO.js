@@ -16,6 +16,7 @@ class GetUserResponseDTO {
     lastLogin,
     studentID,
     profilePictureLink,
+    mfa_qr,
   ) {
     this.userID = userID;
     this.firstName = firstName;
@@ -27,6 +28,7 @@ class GetUserResponseDTO {
     this.lastLogin = lastLogin;
     this.studentID = studentID;
     this.profilePictureLink = profilePictureLink;
+    this.mfa_qr = mfa_qr;
   }
 }
 

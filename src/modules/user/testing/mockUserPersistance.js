@@ -13,6 +13,8 @@ class MockUserPersistance {
     LastLogin,
     StudentID,
     ProfilePictureID,
+    MFA_QR,
+    MFA_Secret,
     file,
   ) {
     this.UserID = UserID;
@@ -26,6 +28,8 @@ class MockUserPersistance {
     this.LastLogin = LastLogin;
     this.StudentID = StudentID;
     this.ProfilePictureID = ProfilePictureID;
+    this.MFA_QR = MFA_QR;
+    this.MFA_Secret = MFA_Secret;
     this.file = file;
   }
 }
@@ -41,6 +45,8 @@ const MockUserPersistance1 = new MockUserPersistance(
   93329811,
   null,
   '2391001',
+  null,
+  null,
   null,
   null,
 );

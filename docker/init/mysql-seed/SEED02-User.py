@@ -20,7 +20,7 @@ with open(csv_file_path, 'r') as file:
     csv_data = csv.reader(file)
     next(csv_data)
 
-    query = "INSERT INTO user (UserID, FirstName, LastName, Email, Password, Role, Gender, MobileNumber, LastLogin, StudentID, ProfilePictureID) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    query = "INSERT INTO user (UserID, FirstName, LastName, Email, Password, Role, Gender, MobileNumber, LastLogin, StudentID, ProfilePictureID, MFA_QR, MFA_Secret) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     values = []
 
 
@@ -40,9 +40,11 @@ with open(csv_file_path, 'r') as file:
         propicIDd_str = row[10]
         propicID_obj = uuid.UUID(propicIDd_str)
         ProfilePictureID = propicID_obj.bytes
+        MFA_QR = row[11]
+        MFA_Secret = row[12]
         
 
-        values.append((UserID, FirstName, LastName, Email, Password, Role, Gender, MobileNumber, LastLogin, StudentID, ProfilePictureID))
+        values.append((UserID, FirstName, LastName, Email, Password, Role, Gender, MobileNumber, LastLogin, StudentID, ProfilePictureID, MFA_QR, MFA_Secret))
 
 
     try:

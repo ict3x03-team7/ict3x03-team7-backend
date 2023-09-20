@@ -25,3 +25,15 @@ services:
       - ./init/mysql-seed:/mysql-seed
     working_dir: /mysql-seed
     command: sh seed.sh
+
+  redis:
+    image: redis:7.2.1
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - '8090:6379'
+    command: >
+      --requirepass ${REDIS_PASSWORD}
+    volumes:
+      - ./redis-cache:/docker-entrypoint-initdb.d/redis-cache

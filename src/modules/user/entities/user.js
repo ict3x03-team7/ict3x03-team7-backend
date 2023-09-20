@@ -13,6 +13,8 @@ class User extends Entity {
     lastLogin,
     studentID,
     profilePicture,
+    mfa_qr,
+    mfa_secret,
   ) {
     super(id);
     this.firstName = firstName;
@@ -25,6 +27,8 @@ class User extends Entity {
     this.lastLogin = lastLogin;
     this.studentID = studentID;
     this.profilePicture = profilePicture;
+    this.mfa_qr = mfa_qr;
+    this.mfa_secret = mfa_secret;
   }
 
   isAdmin() {

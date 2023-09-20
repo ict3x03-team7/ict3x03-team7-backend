@@ -13,6 +13,8 @@ const mockUser = new User(
   null,
   '2391001',
   null,
+  null,
+  null,
 );
 
 module.exports = mockUser;
