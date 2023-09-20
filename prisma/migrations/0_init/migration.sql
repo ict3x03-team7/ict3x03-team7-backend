@@ -28,6 +28,8 @@ CREATE TABLE `user` (
     `LastLogin` TIMESTAMP(0) NULL,
     `StudentID` VARCHAR(255) NULL,
     `ProfilePictureID` BINARY(16) NULL DEFAULT (uuid_to_bin(uuid(),true)),
+    `MFA_QR` TEXT NULL,
+    `MFA_Secret` VARCHAR(255) NULL,
 
     UNIQUE INDEX `Email`(`Email`),
     INDEX `ProfilePictureIDFK_idx`(`ProfilePictureID`),

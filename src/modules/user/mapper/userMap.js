@@ -33,6 +33,8 @@ class UserMap {
       userPersistance.LastLogin,
       studentID,
       userProfilePicture,
+      userPersistance.MFA_QR,
+      userPersistance.MFA_Secret,
     );
     if (mapped) {
       return mapped;
@@ -53,6 +55,7 @@ class UserMap {
       mappedUser.lastLogin,
       mappedUser.studentID,
       profilePictureLink ? profilePictureLink : null,
+      mappedUser.mfa_qr,
     );
   }
 }
