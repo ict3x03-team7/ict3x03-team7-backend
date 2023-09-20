@@ -4,6 +4,13 @@ const loginController = require('./../../../modules/authentication/usecases/logi
 
 authRouter.post('/login', async (req, res) => {
   loginController.execute(req, res);
+  if (res.statusCode == 200) {
+    console.log('Login success');
+  }
+});
+
+authRouter.post('/:userID/2FA/login', async (req, res) => {
+  console.log('In validating 2FA');
 });
 
 module.exports = authRouter;

@@ -13,12 +13,12 @@ class Login {
     if (!isValidEmail(input.email)) {
       return { Error: 'Invalid Credentials' };
     }
-    let userResult;
+    let authUserResult;
     let profilePictureLink;
     try {
-      userResult = await this.AuthUserRepo.getUserByEmail(input.email);
-      if (userResult == null) return { Error: 'Invalid Credentials' };
-      const isPasswordCorrect = await bcrypt.compare(input.password, userResult.password);
+      authUserResult = await this.AuthUserRepo.getUserByEmail(input.email);
+      if (authUserResult == null) return { Error: 'Invalid Credentials' };
+      const isPasswordCorrect = await bcrypt.compare(input.password, authUserResult.password);
       if (!isPasswordCorrect) {
         return { Error: 'Invalid Credentials' };
       }
@@ -28,7 +28,7 @@ class Login {
       //     profilePictureLink = null;
       //   }
 
-      const responseDTO = AuthUserMap.toLoginResponseDTO(userResult);
+      const responseDTO = AuthUserMap.toLoginResponseDTO(authUserResult);
       return responseDTO;
     } catch (err) {
       console.error(err);

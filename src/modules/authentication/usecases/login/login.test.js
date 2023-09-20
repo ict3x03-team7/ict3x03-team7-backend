@@ -24,6 +24,7 @@ describe('Login Use Case', () => {
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ result: mockAuthUserResult });
+    // expect(res.json).toHaveBeenCalledWith({ result: 'Login successful!' });
   });
 
   test('given an invalid user email, should respond with a 400 status code and Error Message', async () => {

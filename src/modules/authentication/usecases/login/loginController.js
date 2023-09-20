@@ -13,6 +13,7 @@ class LoginController {
       if (result.Error) {
         res.status(400).json({ result });
       } else if (result) {
+        res.cookie('UserID', result.userID);
         res.status(200).json({ result });
       }
     } catch (err) {
