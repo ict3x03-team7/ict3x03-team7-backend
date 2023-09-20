@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const equipmentRouter = require('./infra/http/routes/equipment');
 const userRouter = require('./infra/http/routes/user');
+const authRouter = require('./infra/http/routes/authentication');
 const dummyRouter = require('./infra/http/routes/dummy');
 const patrickstar = require('./infra/http/routes/patrickStar');
 const morgan = require('morgan');
@@ -53,8 +53,8 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json('50mb'));
 
-app.use('/user', userRouter);
-app.use('/equipment', equipmentRouter);
+app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/user', userRouter);
 app.use('/dummy', dummyRouter);
 app.use('/patrickstar', patrickstar);
 
