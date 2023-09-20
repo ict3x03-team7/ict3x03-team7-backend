@@ -3,12 +3,13 @@ const mockAuthUser = require('./../../testing/mockAuthUser.js');
 const MockAuthUserRepo = require('./../../testing/mockAuthUserRepo.js');
 const Login = require('./login.js');
 const LoginController = require('./loginController.js');
-const { generateUUID } = require('./../../../../shared/utils/generateUUID.js');
+const MockSessionService = require('../../testing/mockSessionService');
 
 describe('Login Use Case', () => {
   const mockAuthUserRepo = new MockAuthUserRepo([mockAuthUser]);
+  const mockSessionService = new MockSessionService();
   const login = new Login(mockAuthUserRepo);
-  const loginController = new LoginController(login);
+  const loginController = new LoginController(login, mockSessionService);
   const mockAuthUserResult = AuthUserMap.toLoginResponseDTO(mockAuthUser);
   const mockAuthEmail = mockAuthUser.getEmail();
   const mockAuthPassword = 'Password123';

@@ -9,7 +9,7 @@ authRouter.post('/login', async (req, res) => {
   }
 });
 
-authRouter.post('/:userID/2FA/login', async (req, res) => {
+authRouter.post('/:userID/2FA/verify', async (req, res) => {
   console.log('In validating 2FA');
 });
 

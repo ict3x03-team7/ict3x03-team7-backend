@@ -8,9 +8,6 @@ pip install -r requirements.txt
 echo "Waiting For DB to Start"
 python SEED00-wait.py
 
-echo "Seeding Start"
-python SEED00-dummy.py
-
 echo "Seeding File Table"
 python SEED01-File.py
 
