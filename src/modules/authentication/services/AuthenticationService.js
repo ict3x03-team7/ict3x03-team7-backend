@@ -1,9 +1,12 @@
 const redisClient = require('./../../../modules/session/redis');
 
+function testAuth(req, res, next) {
+  console.log('MIDDLEWARE');
+}
+
 function checkAuthentication(req, res, next) {
   if (!req.session || !req.session.userID) {
     res.status(401).json({ Error: 'You are not logged in!' });
-    next();
   } else {
     const session = req.session;
     const now = Date.now();
@@ -22,18 +25,21 @@ function checkAuthentication(req, res, next) {
       );
       redisClient.set(userID, key);
       redisClient.expire(userID, 60 * process.env.SESSION_TIMEOUT);
+      next();
     }
   }
-  next();
 }
-function checkAuthorization(req, res, next) {
+function checkAdminPrivileges(req, res, next) {
   if (!req.session || !req.session.role === 'Admin') {
-    res.status(401).json({ Error: 'You are not authorized!' });
-    next();
+    res.status(403).json({ Error: 'You are not authorized!' });
   } else {
     console.log('Authorized!');
+    next();
   }
-  next();
 }
 
-module.exports = { checkAuthentication, checkAuthorization };
+function checkAuthorization(req, res, next) {
+  //check if session userID is the same as params userID??
+}
+
+module.exports = { checkAuthentication, checkAdminPrivileges, checkAuthorization };

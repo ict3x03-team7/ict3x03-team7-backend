@@ -1,10 +1,11 @@
 const express = require('express');
 const userRouter = express.Router();
 const getUserController = require('./../../../modules/user/usecases/getUser/index');
+const {
+  checkAuthentication,
+} = require('./../../../modules/authentication/services/AuthenticationService');
 
-userRouter.get('/', async (req, res) => {
-  res.json({ message: 'You are a user' });
-});
+userRouter.use(checkAuthentication);
 
 userRouter.get('/:userID', async (req, res) => {
   getUserController.execute(req, res);

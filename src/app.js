@@ -1,15 +1,12 @@
 const express = require('express');
 const cors = require('cors');
-const userRouter = require('./infra/http/routes/user');
-const authRouter = require('./infra/http/routes/authentication');
-const patrickstar = require('./infra/http/routes/patrickStar');
 const morgan = require('morgan');
 const helmet = require('helmet');
+const fs = require('fs');
+
+const authRouter = require('./infra/http/routes/authentication');
+const userRouter = require('./infra/http/routes/user');
 const redisSession = require('./modules/session/session');
-const {
-  checkAuthentication,
-  checkAuthorization,
-} = require('./modules/authentication/services/AuthenticationService');
 
 const dotenv = require('dotenv');
 dotenv.config();
@@ -27,28 +24,38 @@ app.use(
   }),
 );
 
+var logFile = fs.createWriteStream('./myLogFile.log', { flags: 'w' }); //use {flags: 'w'} to open in write mode
+
 app.use(helmet());
-app.use(morgan('dev'));
+app.use(morgan('combined', { stream: logFile }));
 app.use(express.json('50mb'));
 app.use(redisSession);
-
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/user', userRouter);
-app.use('/patrickstar', patrickstar);
 
-app.use(checkAuthentication);
+// app.post('/api/v1/auth/login', async (req, res) => {
+//   loginController.execute(req, res);
+// });
 
-//this route will only run after the above middleware
-app.get('/testSession', (req, res) => {
-  res.json(req.session);
-});
+// app.use(checkAuthentication);
 
-app.get('/testLogout', (req, res) => {
-  req.session.destroy();
-  res.json(req.session);
-});
+// app.post('/api/v1/auth/verify', async (req, res) => {
+//   mfaLoginController.execute(req, res);
+// });
 
-app.use(checkAuthorization);
+// app.get('/api/v1/user/:userID', async (req, res) => {
+//   getUserController.execute(req, res);
+// });
+
+// //this route will only run after the above middleware
+// app.get('/testSession', (req, res) => {
+//   res.json(req.session);
+// });
+
+// app.get('/testLogout', (req, res) => {
+//   req.session.destroy();
+//   res.json(req.session);
+// });
 
 app.get('/adminMessage', (req, res) => {
   res.json('Admin Admin Admin');
