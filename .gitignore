@@ -11,3 +11,5 @@ coverage
 
 *.sh-e
 *.DS_Store
+
+*.log
