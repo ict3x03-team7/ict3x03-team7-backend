@@ -14,7 +14,7 @@ class Entity {
       }
     }
   }
-  getId() {
+  getID() {
     return this.id;
   }
 }

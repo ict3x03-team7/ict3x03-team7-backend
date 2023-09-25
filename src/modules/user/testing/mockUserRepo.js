@@ -5,7 +5,7 @@ class MockUserRepo {
 
   async getUserByID(userID) {
     for (const user of this.mockUsers) {
-      if (user.getId() === userID) {
+      if (user.getID() === userID) {
         return user;
       }
     }

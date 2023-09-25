@@ -1,12 +1,10 @@
-const bcrypt = require('bcrypt');
-const isValidEmail = require('./../../../../shared/utils/validateEmail');
 const AuthUserMap = require('./../../mapper/authUserMap');
 const { MFALoginResponseDTO } = require('./../../dto/mfaLoginDTO');
 
 class MFALogin {
-  constructor(authUserRepo, authenticator) {
+  constructor(authUserRepo, mfaAuthenticator) {
     this.AuthUserRepo = authUserRepo;
-    this.Authenticator = authenticator;
+    this.MFAAuthenticator = mfaAuthenticator;
   }
 
   async execute(input) {
@@ -15,11 +13,12 @@ class MFALogin {
       authUserResult = await this.AuthUserRepo.getUserByID(input.userID);
       if (authUserResult == null) return { Error: 'Invalid User ID' };
       const MFASecret = authUserResult.mfa_secret;
-      console.log(authUserResult.id);
+      // console.log(authUserResult.id);
       // console.log(MFASecret);
-      const isVerified = this.Authenticator.check(input.TOTP, MFASecret);
-      console.log(isVerified);
-      const responseDTO = null;
+      const isVerified = this.MFAAuthenticator.check(input.TOTP, MFASecret);
+      // console.log(isVerified);
+      const responseDTO = AuthUserMap.toMFALoginResponseDTO(isVerified);
+      // console.log(responseDTO);
       return responseDTO;
     } catch (err) {
       console.error(err);

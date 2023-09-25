@@ -9,7 +9,7 @@ class S3FileService {
   async getFile(file) {
     const getObjectCommand = new GetObjectCommand({
       Bucket: process.env.BUCKET_NAME,
-      Key: file.getId().toString(),
+      Key: file.getID().toString(),
       ResponseContentDisposition: `attachment; filename="${file.getOriginalFileName()}"`,
     });
 
@@ -29,7 +29,7 @@ class S3FileService {
     const putObjectCommand = new PutObjectCommand({
       Body: buffer,
       Bucket: process.env.BUCKET_NAME,
-      Key: file.getId().toString(),
+      Key: file.getID().toString(),
     });
 
     try {
@@ -43,7 +43,7 @@ class S3FileService {
   async deleteFile(file) {
     const deleteObjectCommand = new DeleteObjectCommand({
       Bucket: process.env.BUCKET_NAME,
-      Key: file.getId().toString(),
+      Key: file.getSignedUrl().toString(),
     });
     try {
       const result = await this.s3Client.send(deleteObjectCommand);

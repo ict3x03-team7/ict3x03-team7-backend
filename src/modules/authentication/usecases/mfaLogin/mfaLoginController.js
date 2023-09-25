@@ -10,13 +10,14 @@ class MFALoginController {
 
   async execute(req, res) {
     const requestDTO = new MFALoginRequestDTO(req.session.userID, req.body.totp);
-    console.log(requestDTO);
 
     try {
       const result = await this.MFALogin.execute(requestDTO);
-      if (result.Error) {
-        res.status(400).json({ result });
-      } else if (result) {
+      if (!result.isVerified) {
+        res.status(401).json({ result });
+        this.SessionService.del(requestDTO.userID);
+        this.SessionService.del('sess:' + req.sessionID);
+      } else {
         res.status(200).json({ result });
       }
     } catch (err) {

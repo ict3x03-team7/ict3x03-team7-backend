@@ -6,9 +6,8 @@ class MFALoginRequestDTO {
 }
 
 class MFALoginResponseDTO {
-  constructor(userID, role) {
-    this.userID = userID;
-    this.role = role;
+  constructor(isVerified) {
+    this.isVerified = isVerified;
   }
 }
 

@@ -17,8 +17,11 @@ class LoginController {
         res.status(400).json({ result });
       } else if (result) {
         const sessionExists = await this.SessionService.get(result.userID);
+        // console.log('Existing Session:', sessionExists);
         if (sessionExists) {
-          res.status(400).json({ Error: 'You are already logged in on another device' });
+          this.SessionService.del(result.userID);
+          this.SessionService.del('sess:' + sessionExists);
+          res.status(400).json({ Error: 'You have been logged out of all devices' });
         } else {
           let key;
           if (req.session) {
