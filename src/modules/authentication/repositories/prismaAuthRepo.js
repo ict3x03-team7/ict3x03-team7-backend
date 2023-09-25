@@ -1,9 +1,10 @@
-const generateBuffer = require('../../../shared/utils/generateBuffer');
 const { convertUUIDToBuffer } = require('./../../../shared/utils/generateUUID');
 const authUserMap = require('../mapper/authUserMap');
+const IAuthRepo = require('./iAuthRepo');
 
-class PrismaAuthRepo {
+class PrismaAuthRepo extends IAuthRepo {
   constructor(prisma) {
+    super();
     this.prisma = prisma;
   }
 

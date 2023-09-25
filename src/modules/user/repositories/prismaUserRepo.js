@@ -1,9 +1,11 @@
 const generateBuffer = require('../../../shared/utils/generateBuffer');
 const { convertUUIDToBuffer } = require('./../../../shared/utils/generateUUID');
 const UserMap = require('../mapper/userMap.js');
+const IUserRepo = require('./iUserRepo');
 
-class PrismaUserRepo {
+class PrismaUserRepo extends IUserRepo {
   constructor(prisma) {
+    super();
     this.prisma = prisma;
   }
 

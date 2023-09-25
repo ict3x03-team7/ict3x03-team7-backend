@@ -10,7 +10,7 @@ describe('GetUser Use Case', () => {
   const getUser = new GetUser(mockUserRepo);
   const getUserController = new GetUserController(getUser);
   const mockUserResult = UserMap.toGetUserResponseDTO(mockUser);
-  const mockUserID = mockUser.getId();
+  const mockUserID = mockUser.getID();
 
   test('given a valid user ID, should respond with a 200 status code and GetUserResponseDTO', async () => {
     const req = { params: { userID: mockUserID } };
