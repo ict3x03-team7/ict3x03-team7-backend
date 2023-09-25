@@ -1,9 +1,5 @@
 const redisClient = require('./../../../modules/session/redis');
 
-function testAuth(req, res, next) {
-  console.log('MIDDLEWARE');
-}
-
 function checkAuthentication(req, res, next) {
   // console.log('SessionID: ', req.sessionID);
   if (!req.session || !req.session.userID) {
