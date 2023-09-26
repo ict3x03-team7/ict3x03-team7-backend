@@ -6,9 +6,8 @@ class LoginRequestDTO {
 }
 
 class LoginResponseDTO {
-  constructor(userID, role) {
-    this.userID = userID;
-    this.role = role;
+  constructor(isSuccess) {
+    this.isSuccess = isSuccess;
   }
 }
 
