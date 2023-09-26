@@ -1,14 +1,17 @@
-class MFALoginRequestDTO {
+class MFAVerifyRequestDTO {
   constructor(userID, TOTP) {
     this.userID = userID;
     this.TOTP = TOTP;
   }
 }
 
-class MFALoginResponseDTO {
+class MFAVerifyResponseDTO {
   constructor(isVerified) {
     this.isVerified = isVerified;
   }
 }
 
-module.exports = { MFALoginRequestDTO, MFALoginResponseDTO };
+module.exports = {
+  MFAVerifyRequestDTO,
+  MFAVerifyResponseDTO,
+};
