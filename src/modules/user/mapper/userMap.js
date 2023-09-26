@@ -1,6 +1,7 @@
 const User = require('../entities/user.js');
 const { convertUUIDFromBuffer } = require('./../../../shared/utils/generateUUID.js');
 const { GetUserResponseDTO } = require('../dto/getUserDTO.js');
+const { CreateUserResponseDTO } = require('./../dto/createUserDTO.js');
 const FileMap = require('../../../shared/mapper/fileMap.js');
 
 class UserMap {
@@ -57,6 +58,10 @@ class UserMap {
       profilePictureLink ? profilePictureLink : null,
       mappedUser.mfa_qr,
     );
+  }
+
+  static toCreateUserResponseDTO(isSuccess) {
+    return new CreateUserResponseDTO(isSuccess);
   }
 }
 

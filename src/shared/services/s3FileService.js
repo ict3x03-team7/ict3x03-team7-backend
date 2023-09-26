@@ -1,8 +1,10 @@
+const IFileService = require('./iFileService');
 const { PutObjectCommand, GetObjectCommand, DeleteObjectCommand } = require('@aws-sdk/client-s3');
 const { getSignedUrl } = require('@aws-sdk/s3-request-presigner');
 
-class S3FileService {
+class S3FileService extends IFileService {
   constructor(s3Instance) {
+    super();
     this.s3Client = s3Instance;
   }
 
