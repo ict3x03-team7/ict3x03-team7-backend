@@ -35,8 +35,8 @@ class AuthUserMap {
     }
   }
 
-  static toLoginResponseDTO(isSuccess) {
-    return new LoginResponseDTO(isSuccess);
+  static toLoginResponseDTO(mappedUser) {
+    return new LoginResponseDTO(mappedUser.id, mappedUser.role);
   }
 
   static toMFAVerifyResponseDTO(isVerified) {

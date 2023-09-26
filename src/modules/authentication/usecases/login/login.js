@@ -27,10 +27,8 @@ class Login {
       //   } else {
       //     profilePictureLink = null;
       //   }
-      let isSuccess = false;
-      if (authUserResult) isSuccess = true;
 
-      const responseDTO = AuthUserMap.toLoginResponseDTO(isSuccess);
+      const responseDTO = AuthUserMap.toLoginResponseDTO(authUserResult);
       return responseDTO;
     } catch (err) {
       console.error(err);
