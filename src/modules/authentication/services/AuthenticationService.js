@@ -1,6 +1,7 @@
 const redisClient = require('./../../../modules/session/redis');
 
 function checkAuthentication(req, res, next) {
+  console.log('SessionID: ', req.sessionID);
   if (!req.session || !req.session.userID) {
     res.status(401).json({ Error: 'You are not logged in!' });
   } else {
