@@ -1,9 +1,14 @@
 const express = require('express');
 const userRouter = express.Router();
 const getUserController = require('./../../../modules/user/usecases/getUser/index');
+const createUserController = require('./../../../modules/user/usecases/createUser/index');
 const {
   checkAuthentication,
 } = require('./../../../modules/authentication/services/AuthenticationService');
+
+userRouter.post('/', async (req, res) => {
+  createUserController.execute(req, res);
+});
 
 userRouter.use(checkAuthentication);
 

@@ -30,6 +30,42 @@ class PrismaUserRepo extends IUserRepo {
       throw new Error('Server Error');
     }
   }
+
+  async addUser(
+    userID,
+    firstName,
+    lastName,
+    email,
+    hashedPassword,
+    role,
+    gender,
+    mobileNumber,
+    studentID,
+    profilePictureID,
+  ) {
+    const data = {
+      UserID: convertUUIDToBuffer(userID),
+      FirstName: firstName,
+      LastName: lastName,
+      Email: email,
+      Role: role,
+      Gender: gender,
+      MobileNumber: mobileNumber,
+      StudentID: studentID,
+      ProfilePictureID: convertUUIDToBuffer(profilePictureID),
+      Password: hashedPassword,
+    };
+
+    try {
+      const addedUser = await this.prisma.user.create({
+        data,
+      });
+      return true;
+    } catch (err) {
+      console.error(err);
+      throw new Error('Server Error');
+    }
+  }
 }
 
 module.exports = PrismaUserRepo;

@@ -17,5 +17,6 @@ module.exports = session({
     secure: false, //if true need https
     httpOnly: true, //prevents client side JS from reading the cookie
     maxAge: 1000 * 60 * process.env.SESSION_TIMEOUT, //in milliseconds
+    sameSite: 'strict',
   },
 });
