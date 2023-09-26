@@ -1,7 +1,7 @@
-const AuthUserMap = require('./../../mapper/authUserMap');
-const { MFALoginResponseDTO } = require('./../../dto/mfaLoginDTO');
+const AuthUserMap = require('../../mapper/authUserMap');
+const { MFAVerifyRequestDTO } = require('../../dto/mfaVerifyDTO');
 
-class MFALogin {
+class MFAVerify {
   constructor(authUserRepo, mfaAuthenticator) {
     this.AuthUserRepo = authUserRepo;
     this.MFAAuthenticator = mfaAuthenticator;
@@ -17,7 +17,7 @@ class MFALogin {
       // console.log(MFASecret);
       const isVerified = this.MFAAuthenticator.check(input.TOTP, MFASecret);
       // console.log(isVerified);
-      const responseDTO = AuthUserMap.toMFALoginResponseDTO(isVerified);
+      const responseDTO = AuthUserMap.toMFAVerifyResponseDTO(isVerified);
       // console.log(responseDTO);
       return responseDTO;
     } catch (err) {
@@ -27,4 +27,4 @@ class MFALogin {
   }
 }
 
-module.exports = MFALogin;
+module.exports = MFAVerify;
