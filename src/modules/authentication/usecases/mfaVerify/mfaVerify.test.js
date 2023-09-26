@@ -1,19 +1,19 @@
 const AuthUserMap = require('../../mapper/authUserMap');
-const mockAuthUser = require('./../../testing/mockAuthUser.js');
-const MockAuthUserRepo = require('./../../testing/mockAuthUserRepo.js');
-const MFALogin = require('./mfaLogin');
-const MFALoginController = require('./mfaLoginController');
+const mockAuthUser = require('../../testing/mockAuthUser.js');
+const MockAuthUserRepo = require('../../testing/mockAuthUserRepo.js');
+const MFAVerify = require('./mfaVerify');
+const MFAVerifyController = require('./mfaVerifyController');
 const MockSessionService = require('../../testing/mockSessionService');
-const MockMFAAuthenticator = require('./../../testing/mockMFAAuthenticator');
+const MockMFAAuthenticator = require('../../testing/mockMFAAuthenticator');
 
 describe('MFA Login Use Case', () => {
   const mockAuthUserRepo = new MockAuthUserRepo([mockAuthUser]);
   const mockSessionService = new MockSessionService();
   const mockMFAAuthenticator = new MockMFAAuthenticator();
-  const mfaLogin = new MFALogin(mockAuthUserRepo, mockMFAAuthenticator);
-  const mfaLoginController = new MFALoginController(mfaLogin, mockSessionService);
-  const mockSuccessResult = AuthUserMap.toMFALoginResponseDTO(true);
-  const mockFailureResult = AuthUserMap.toMFALoginResponseDTO(false);
+  const mfaVerify = new MFAVerify(mockAuthUserRepo, mockMFAAuthenticator);
+  const mfaVerifyController = new MFAVerifyController(mfaVerify, mockSessionService);
+  const mockSuccessResult = AuthUserMap.toMFAVerifyResponseDTO(true);
+  const mockFailureResult = AuthUserMap.toMFAVerifyResponseDTO(false);
   const mockAuthEmail = mockAuthUser.getEmail();
   const validTOTP = '000111';
   const invalidTOTP = '111000';
@@ -25,7 +25,7 @@ describe('MFA Login Use Case', () => {
       json: jest.fn(),
     };
 
-    await mfaLoginController.execute(req, res);
+    await mfaVerifyController.execute(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ result: mockSuccessResult });
@@ -38,7 +38,7 @@ describe('MFA Login Use Case', () => {
       json: jest.fn(),
     };
 
-    await mfaLoginController.execute(req, res);
+    await mfaVerifyController.execute(req, res);
 
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({ result: mockFailureResult });

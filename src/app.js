@@ -55,10 +55,6 @@ app.use('/patrick', patrickRouter);
 
 // app.use(checkAuthentication);
 
-// app.post('/api/v1/auth/verify', async (req, res) => {
-//   mfaLoginController.execute(req, res);
-// });
-
 // app.get('/api/v1/user/:userID', async (req, res) => {
 //   getUserController.execute(req, res);
 // });
