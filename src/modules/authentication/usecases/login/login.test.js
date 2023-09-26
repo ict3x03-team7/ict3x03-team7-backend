@@ -24,7 +24,7 @@ describe('Login Use Case', () => {
     await loginController.execute(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ result: mockAuthUserResult });
+    expect(res.json).toHaveBeenCalledWith({ result: { isSuccess: true } });
     // expect(res.json).toHaveBeenCalledWith({ result: 'Login successful!' });
   });
 
