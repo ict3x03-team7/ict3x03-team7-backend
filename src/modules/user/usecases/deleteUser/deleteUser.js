@@ -6,10 +6,9 @@ const {
 } = require('./../../../../shared/utils/generateUUID');
 const UserMap = require('./../../mapper/userMap');
 
-class UpdatePassword {
-  constructor(userRepo, hashingService) {
+class DeleteUser {
+  constructor(userRepo) {
     this.UserRepo = userRepo;
-    this.HashingService = hashingService;
   }
 
   async execute(input) {
@@ -17,13 +16,13 @@ class UpdatePassword {
       return { Error: 'Invalid User ID' };
     }
     let userResult;
+    let deleteResult;
     let isSuccess = false;
     try {
       userResult = await this.UserRepo.getUserByID(input.userID);
       if (userResult == null) return { Error: 'User Not Found' };
-      const hashedPassword = await this.HashingService.hashing(input.newPassword);
-      const updatePasswordResult = await this.UserRepo.updatePassword(input.userID, hashedPassword);
-      if (updatePasswordResult) isSuccess = true;
+      deleteResult = await this.UserRepo.deleteUserByID(input.userID);
+      if (deleteResult) isSuccess = true;
       const responseDTO = UserMap.toUpdatePasswordResponseDTO(isSuccess);
       return responseDTO;
     } catch (err) {
@@ -33,4 +32,4 @@ class UpdatePassword {
   }
 }
 
-module.exports = UpdatePassword;
+module.exports = DeleteUser;

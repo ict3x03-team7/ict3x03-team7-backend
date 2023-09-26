@@ -3,6 +3,7 @@ const { convertUUIDFromBuffer } = require('./../../../shared/utils/generateUUID.
 const { GetUserResponseDTO } = require('../dto/getUserDTO.js');
 const { CreateUserResponseDTO } = require('./../dto/createUserDTO.js');
 const { UpdatePasswordResponseDTO } = require('./../dto/updatePasswordDTO.js');
+const { DeleteUserResponseDTO } = require('./../dto/deleteUserDTO.js');
 const FileMap = require('../../../shared/mapper/fileMap.js');
 
 class UserMap {
@@ -67,6 +68,10 @@ class UserMap {
 
   static toUpdatePasswordResponseDTO(isSuccess) {
     return new UpdatePasswordResponseDTO(isSuccess);
+  }
+
+  static toDeleteUserResponseDTO(isSuccess) {
+    return new DeleteUserResponseDTO(isSuccess);
   }
 }
 

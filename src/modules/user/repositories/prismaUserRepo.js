@@ -90,6 +90,20 @@ class PrismaUserRepo extends IUserRepo {
       throw new Error('Server Error');
     }
   }
+  async deleteUserByID(userID) {
+    try {
+      const result = await this.prisma.user.delete({
+        where: {
+          UserID: generateBuffer(userID),
+        },
+      });
+      if (result) return true;
+      return false;
+    } catch (err) {
+      console.error(err);
+      throw new Error('Server Error');
+    }
+  }
 }
 
 module.exports = PrismaUserRepo;
