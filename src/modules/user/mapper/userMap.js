@@ -2,6 +2,7 @@ const User = require('../entities/user.js');
 const { convertUUIDFromBuffer } = require('./../../../shared/utils/generateUUID.js');
 const { GetUserResponseDTO } = require('../dto/getUserDTO.js');
 const { CreateUserResponseDTO } = require('./../dto/createUserDTO.js');
+const { UpdatePasswordResponseDTO } = require('./../dto/updatePasswordDTO.js');
 const FileMap = require('../../../shared/mapper/fileMap.js');
 
 class UserMap {
@@ -62,6 +63,10 @@ class UserMap {
 
   static toCreateUserResponseDTO(isSuccess) {
     return new CreateUserResponseDTO(isSuccess);
+  }
+
+  static toUpdatePasswordResponseDTO(isSuccess) {
+    return new UpdatePasswordResponseDTO(isSuccess);
   }
 }
 
