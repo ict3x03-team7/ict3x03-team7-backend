@@ -11,6 +11,11 @@ class PrismaFileRepo extends IFileRepo {
 
   async getFileById(fileID) {
     try {
+      const fileResult = await this.prisma.file.findFirst({
+        where: {
+          FileID: generateBuffer(fileID),
+        },
+      });
     } catch (err) {
       console.error(err);
       throw new Error('Server Error');
