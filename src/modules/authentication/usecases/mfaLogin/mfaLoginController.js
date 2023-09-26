@@ -1,18 +1,18 @@
-const { MFAVerifyRequestDTO } = require('../../dto/mfaVerifyDTO');
+const { MFALoginRequestDTO } = require('./../../dto/mfaLoginDTO');
 const dotenv = require('dotenv');
 dotenv.config();
 
-class MFAVerifyController {
-  constructor(mfaVerify, sessionService) {
-    this.MFAVerify = mfaVerify;
+class MFALoginController {
+  constructor(mfaLogin, sessionService) {
+    this.MFALogin = mfaLogin;
     this.SessionService = sessionService;
   }
 
   async execute(req, res) {
-    const requestDTO = new MFAVerifyRequestDTO(req.session.userID, req.body.totp);
+    const requestDTO = new MFALoginRequestDTO(req.session.userID, req.body.totp);
 
     try {
-      const result = await this.MFAVerify.execute(requestDTO);
+      const result = await this.MFALogin.execute(requestDTO);
       if (!result.isVerified) {
         res.status(401).json({ result });
         this.SessionService.del(requestDTO.userID);
@@ -27,4 +27,4 @@ class MFAVerifyController {
   }
 }
 
-module.exports = MFAVerifyController;
+module.exports = MFALoginController;

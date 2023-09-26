@@ -2,7 +2,7 @@ const AuthUser = require('../entities/authUser');
 const { convertUUIDFromBuffer } = require('./../../../shared/utils/generateUUID.js');
 const FileMap = require('../../../shared/mapper/fileMap.js');
 const { LoginResponseDTO } = require('./../dto/loginDTO');
-const { MFAVerifyResponseDTO } = require('./../dto/mfaVerifyDTO');
+const { MFALoginResponseDTO } = require('./../dto/mfaLoginDTO');
 
 class AuthUserMap {
   constructor() {}
@@ -39,8 +39,8 @@ class AuthUserMap {
     return new LoginResponseDTO(isSuccess);
   }
 
-  static toMFAVerifyResponseDTO(isVerified) {
-    return new MFAVerifyResponseDTO(isVerified);
+  static toMFALoginResponseDTO(isVerified) {
+    return new MFALoginResponseDTO(isVerified);
   }
 }
 
