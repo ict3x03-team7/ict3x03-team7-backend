@@ -13,6 +13,7 @@ class IUserRepo {
     studentID,
     profilePictureLink,
   ) {}
+  async updatePassword(userID, newHashedPassword) {}
 }
 
 module.exports = IUserRepo;
