@@ -45,7 +45,7 @@ class S3FileService extends IFileService {
   async deleteFile(file) {
     const deleteObjectCommand = new DeleteObjectCommand({
       Bucket: process.env.BUCKET_NAME,
-      Key: file.getSignedUrl().toString(),
+      Key: file.getID().toString(),
     });
     try {
       const result = await this.s3Client.send(deleteObjectCommand);

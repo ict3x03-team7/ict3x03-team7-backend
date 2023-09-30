@@ -6,6 +6,7 @@ const updatePasswordController = require('./../../../modules/user/usecases/updat
 const deleteUserController = require('./../../../modules/user/usecases/deleteUser/index');
 const {
   checkAuthentication,
+  checkAdminPrivileges,
 } = require('./../../../modules/authentication/services/AuthenticationService');
 
 userRouter.post('/', async (req, res) => {

@@ -7,8 +7,10 @@ const {
 const UserMap = require('./../../mapper/userMap');
 
 class DeleteUser {
-  constructor(userRepo) {
+  constructor(userRepo, fileRepo, fileService) {
     this.UserRepo = userRepo;
+    this.FileRepo = fileRepo;
+    this.FileService = fileService;
   }
 
   async execute(input) {
@@ -17,12 +19,16 @@ class DeleteUser {
     }
     let userResult;
     let deleteResult;
+    let deleteProfilePictureResult;
     let isSuccess = false;
     try {
       userResult = await this.UserRepo.getUserByID(input.userID);
       if (userResult == null) return { Error: 'User Not Found' };
       deleteResult = await this.UserRepo.deleteUserByID(input.userID);
-      if (deleteResult) isSuccess = true;
+      if (userResult.profilePicture) {
+        deleteProfilePictureResult = await this.FileService.deleteFile(userResult.profilePicture);
+      }
+      if (deleteResult && deleteProfilePictureResult) isSuccess = true;
       const responseDTO = UserMap.toUpdatePasswordResponseDTO(isSuccess);
       return responseDTO;
     } catch (err) {
