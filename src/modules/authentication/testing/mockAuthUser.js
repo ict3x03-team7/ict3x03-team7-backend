@@ -6,7 +6,7 @@ const mockAuthUser = new AuthUser(
   'Hassan',
   'Lucero',
   'hasLuce@gmail.com',
-  '$2b$13$pIsvZ0Mz7dx1qBUnRT96Y.dqP2hN2J5SZgEPD0higBKCGyxr1zFgq',
+  'Password123',
   'Student',
   null,
   null,

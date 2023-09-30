@@ -10,6 +10,9 @@ class MockSessionService {
   expire(key, duration) {
     return null;
   }
+  del(key) {
+    return null;
+  }
 }
 
 module.exports = MockSessionService;

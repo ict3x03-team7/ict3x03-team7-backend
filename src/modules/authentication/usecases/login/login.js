@@ -1,12 +1,10 @@
-const bcrypt = require('bcrypt');
 const isValidEmail = require('./../../../../shared/utils/validateEmail');
 const AuthUserMap = require('./../../mapper/authUserMap');
-const { LoginResponseDTO } = require('./../../dto/loginDTO');
 
 class Login {
-  constructor(authUserRepo, fileService) {
+  constructor(authUserRepo, hashingService) {
     this.AuthUserRepo = authUserRepo;
-    this.FileService = fileService;
+    this.HashingService = hashingService;
   }
 
   async execute(input) {
@@ -14,19 +12,16 @@ class Login {
       return { Error: 'Invalid Credentials' };
     }
     let authUserResult;
-    let profilePictureLink;
     try {
       authUserResult = await this.AuthUserRepo.getUserByEmail(input.email);
       if (authUserResult == null) return { Error: 'Invalid Credentials' };
-      const isPasswordCorrect = await bcrypt.compare(input.password, authUserResult.password);
+      const isPasswordCorrect = await this.HashingService.compare(
+        input.password,
+        authUserResult.password,
+      );
       if (!isPasswordCorrect) {
         return { Error: 'Invalid Credentials' };
       }
-      //   if (userResult.profilePicture) {
-      //     profilePictureLink = await this.FileService.getFile(userResult.profilePicture);
-      //   } else {
-      //     profilePictureLink = null;
-      //   }
 
       const responseDTO = AuthUserMap.toLoginResponseDTO(authUserResult);
       return responseDTO;

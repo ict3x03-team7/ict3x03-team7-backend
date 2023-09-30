@@ -8,7 +8,7 @@ const redisClient = require('./redis');
 
 module.exports = session({
   store: new RedisStore({ client: redisClient }),
-  secret: '$2b$13$/o23Z/ClNbw07A4jJEonme',
+  secret: process.env.SESSION_SECRET,
   saveUninitialized: false,
   name: 'sessionID',
   resave: false, //will not overwrite session
