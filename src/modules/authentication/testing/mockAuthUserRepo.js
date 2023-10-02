@@ -19,6 +19,15 @@ class MockAuthUserRepo {
       }
     }
   }
+  async updateMFA(userID, mfa_qr, mfa_secret) {
+    for (const user of this.mockAuthUsers) {
+      if (user.getID() === userID) {
+        user.mfa_qr = mfa_qr;
+        user.mfa_secret = mfa_secret;
+        return user;
+      }
+    }
+  }
 }
 
 module.exports = MockAuthUserRepo;
