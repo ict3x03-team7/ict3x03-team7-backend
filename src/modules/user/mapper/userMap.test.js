@@ -1,10 +1,10 @@
 const UserMap = require('./userMap');
-const mockUserPersistance = require('./../testing/mockUserPersistance.js');
+const { MockUserPersistance1 } = require('./../testing/mockUserPersistance.js');
 const mockUser = require('./../testing/mockUser.js');
 
 describe('Mapping User Persistance to Domain', () => {
   test('given a User Persistance, should receive a Domain User', async () => {
-    const domainUser = UserMap.toDomain(mockUserPersistance);
+    const domainUser = UserMap.toDomain(MockUserPersistance1);
     expect(domainUser).toStrictEqual(mockUser);
   });
 });
