@@ -116,7 +116,6 @@ class PrismaUserRepo extends IUserRepo {
       });
       const mappedUsers = result.map((user) => {
         const mappedUser = UserMap.toDomain(user);
-        console.log(mappedUser);
         return mappedUser;
       });
       if (result) return mappedUsers;

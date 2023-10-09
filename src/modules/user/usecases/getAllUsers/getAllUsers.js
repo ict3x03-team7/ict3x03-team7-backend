@@ -22,12 +22,6 @@ class GetAllUsers {
       userResult = await this.UserRepo.getAllUsers();
       if (userResult == null) return { Error: 'Users Not Found' };
 
-      // if (userResult.profilePicture) {
-      //   profilePictureLink = await this.FileService.getFile(userResult.profilePicture);
-      // } else {
-      //   profilePictureLink = null;
-      // }
-
       const mappedUsers = userResult.map(async (user) => {
         let profilePictureLink;
 

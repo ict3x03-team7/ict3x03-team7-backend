@@ -27,9 +27,7 @@ function checkAuthentication(req, res, next) {
   }
 }
 function checkAdminPrivileges(req, res, next) {
-  console.log(req.session.role);
   if (req.session.role === 'Admin') {
-    console.log('Authorized!');
     next();
   } else {
     res.status(403).json({ Error: 'You are not authorized!' });
