@@ -1,5 +1,7 @@
-class MockAuthUserRepo {
+const IAuthRepo = require('./../repositories/iAuthRepo');
+class MockAuthUserRepo extends IAuthRepo {
   constructor(mockAuthUsers) {
+    super();
     this.mockAuthUsers = mockAuthUsers;
   }
 
@@ -24,6 +26,13 @@ class MockAuthUserRepo {
       if (user.getID() === userID) {
         user.mfa_qr = mfa_qr;
         user.mfa_secret = mfa_secret;
+        return user;
+      }
+    }
+  }
+  async updateLastLogin(userID, lastLogin) {
+    for (const user of this.mockAuthUsers) {
+      if (user.getID() === userID) {
         return user;
       }
     }

@@ -1,5 +1,7 @@
-class MockUserRepo {
+const IUserRepo = require('./../repositories/iUserRepo');
+class MockUserRepo extends IUserRepo {
   constructor(mockUsers) {
+    super();
     this.mockUsers = mockUsers;
   }
 
