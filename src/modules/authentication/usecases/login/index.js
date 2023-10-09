@@ -14,8 +14,8 @@ const prismaAuthUserRepo = new PrismaAuthUserRepo(PrismaInstance);
 
 const bcryptHashingService = new BcryptHashingService(bcrypt);
 
-const login = new Login(prismaAuthUserRepo, bcryptHashingService);
+const login = new Login(prismaAuthUserRepo, bcryptHashingService, redisClient);
 
-const loginController = new LoginController(login, redisClient);
+const loginController = new LoginController(login);
 
 module.exports = loginController;
