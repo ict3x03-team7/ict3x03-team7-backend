@@ -1,4 +1,5 @@
 const { LogoutResponseDTO } = require('./../../dto/logoutDTO');
+const isValidUUIDv4 = require('../../../../shared/utils/validateUUID');
 
 class Logout {
   constructor(sessionService) {
@@ -7,6 +8,9 @@ class Logout {
 
   async execute(input) {
     try {
+      if (!isValidUUIDv4(input.userID)) {
+        return { Error: 'Invalid User ID' };
+      }
       this.SessionService.del(input.userID);
       this.SessionService.del('sess:' + input.sessionID);
       const responseDTO = new LogoutResponseDTO(true);
