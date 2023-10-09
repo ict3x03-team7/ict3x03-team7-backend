@@ -104,6 +104,28 @@ class PrismaUserRepo extends IUserRepo {
       throw new Error('Server Error');
     }
   }
+  async getAllUsers() {
+    try {
+      const result = await this.prisma.user.findMany({
+        where: {
+          Role: 'Student',
+        },
+        include: {
+          file: true,
+        },
+      });
+      const mappedUsers = result.map((user) => {
+        const mappedUser = UserMap.toDomain(user);
+        console.log(mappedUser);
+        return mappedUser;
+      });
+      if (result) return mappedUsers;
+      return null;
+    } catch (err) {
+      console.error(err);
+      throw new Error('Server Error');
+    }
+  }
 }
 
 module.exports = PrismaUserRepo;

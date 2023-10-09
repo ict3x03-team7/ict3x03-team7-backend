@@ -12,6 +12,7 @@ class Login {
       return { Error: 'Invalid Credentials' };
     }
     let authUserResult;
+    let updateLastLogin;
     try {
       authUserResult = await this.AuthUserRepo.getUserByEmail(input.email);
       if (authUserResult == null) return { Error: 'Invalid Credentials' };
@@ -22,7 +23,8 @@ class Login {
       if (!isPasswordCorrect) {
         return { Error: 'Invalid Credentials' };
       }
-
+      const newLoginTime = new Date();
+      updateLastLogin = await this.AuthUserRepo.updateLastLogin(authUserResult.id, newLoginTime);
       const responseDTO = AuthUserMap.toLoginResponseDTO(authUserResult);
       return responseDTO;
     } catch (err) {

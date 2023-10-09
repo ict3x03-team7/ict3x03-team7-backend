@@ -1,6 +1,7 @@
 const { convertUUIDToBuffer } = require('./../../../shared/utils/generateUUID');
 const authUserMap = require('../mapper/authUserMap');
 const IAuthRepo = require('./iAuthRepo');
+const AuthUserMap = require('../mapper/authUserMap');
 
 class PrismaAuthRepo extends IAuthRepo {
   constructor(prisma) {
@@ -68,6 +69,30 @@ class PrismaAuthRepo extends IAuthRepo {
       let mappedUser;
       if (user) {
         mappedUser = authUserMap.toDomain(user);
+        return mappedUser;
+      }
+      return null;
+    } catch (err) {
+      console.error(err);
+      throw new Error('Server Error');
+    }
+  }
+  async updateLastLogin(userID, lastLogin) {
+    try {
+      const user = await this.prisma.user.update({
+        where: {
+          UserID: convertUUIDToBuffer(userID),
+        },
+        include: {
+          file: true,
+        },
+        data: {
+          LastLogin: lastLogin,
+        },
+      });
+      let mappedUser;
+      if (user) {
+        mappedUser = AuthUserMap.toDomain(user);
         return mappedUser;
       }
       return null;
