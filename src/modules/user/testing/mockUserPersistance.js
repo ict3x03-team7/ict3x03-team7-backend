@@ -51,4 +51,4 @@ const MockUserPersistance1 = new MockUserPersistance(
   null,
 );
 
-module.exports = MockUserPersistance1;
+module.exports = { MockUserPersistance, MockUserPersistance1 };

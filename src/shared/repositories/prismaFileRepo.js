@@ -32,13 +32,25 @@ class PrismaFileRepo extends IFileRepo {
       const addedFile = await this.prisma.file.create({
         data,
       });
-      return addedFile;
+      return fileToAdd;
     } catch (err) {
       console.error(err);
       throw new Error('Server Error');
     }
   }
-  async deleteFile(file) {}
+  async deleteFile(file) {
+    try {
+      const deletedFileResult = await this.prisma.file.deleteFile({
+        where: {
+          FileID: generateBuffer(file.getID()),
+        },
+      });
+      return file;
+    } catch (err) {
+      console.error(err);
+      throw new Error('Server Error');
+    }
+  }
 }
 
 module.exports = PrismaFileRepo;

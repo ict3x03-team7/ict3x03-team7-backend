@@ -1,18 +1,24 @@
 const IFileRepo = require('./../repositories/iFileRepo');
 
 class MockFileRepo extends IFileRepo {
-  constructor(prisma) {
+  constructor(mockFiles) {
     super();
+    this.mockFiles = mockFiles;
   }
 
   async getFileById(fileID) {
-    return null;
+    for (const file of this.mockFiles) {
+      if (file.getID() === fileID) {
+        return true;
+      }
+    }
+    return false;
   }
   async addFile(fileToAdd) {
-    return null;
+    return fileToAdd;
   }
   async deleteFile(file) {
-    return null;
+    return file;
   }
 }
 
