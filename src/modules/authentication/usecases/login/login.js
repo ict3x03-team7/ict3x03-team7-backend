@@ -17,6 +17,7 @@ class Login {
     }
     let authUserResult;
     let updateLastLogin;
+    let loginSuccess = false;
     try {
       authUserResult = await this.AuthUserRepo.getUserByEmail(input.email);
       if (authUserResult == null) return { Error: 'Invalid Credentials' };
@@ -46,8 +47,10 @@ class Login {
         this.SessionService.expire(authUserResult.id, 60 * process.env.SESSION_TIMEOUT);
         // res.status(200).json({ result });
       }
-
-      const responseDTO = AuthUserMap.toLoginResponseDTO(authUserResult);
+      if (authUserResult) {
+        loginSuccess = true;
+      }
+      const responseDTO = AuthUserMap.toLoginResponseDTO(loginSuccess);
       return responseDTO;
     } catch (err) {
       console.error(err);
