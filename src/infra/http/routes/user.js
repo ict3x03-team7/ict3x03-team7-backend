@@ -8,6 +8,7 @@ const getAllUsersController = require('./../../../modules/user/usecases/getAllUs
 const {
   checkAuthentication,
   checkAdminPrivileges,
+  checkAuthorization,
 } = require('./../../../modules/authentication/services/AuthenticationService');
 
 userRouter.post('/', async (req, res) => {
@@ -15,21 +16,24 @@ userRouter.post('/', async (req, res) => {
 });
 
 userRouter.use(checkAuthentication);
-// userRouter.use(checkAdminPrivileges);
 
 userRouter.get('/all', checkAdminPrivileges, async (req, res) => {
   getAllUsersController.execute(req, res);
 });
 
-userRouter.get('/:userID', async (req, res) => {
+userRouter.get('/:userID', checkAuthorization, async (req, res) => {
   getUserController.execute(req, res);
 });
 
-userRouter.put('/:userID/updatePassword', async (req, res) => {
+userRouter.put('/:userID/updatePassword', checkAuthorization, async (req, res) => {
   updatePasswordController.execute(req, res);
 });
 
-userRouter.delete('/:userID', async (req, res) => {
+userRouter.delete('/:userID', checkAuthorization, async (req, res) => {
+  deleteUserController.execute(req, res);
+});
+
+userRouter.delete('/admin/:userID', checkAdminPrivileges, async (req, res) => {
   deleteUserController.execute(req, res);
 });
 
