@@ -6,6 +6,7 @@ const fs = require('fs');
 
 const authRouter = require('./infra/http/routes/authentication');
 const userRouter = require('./infra/http/routes/user');
+const recipeRouter = require('./infra/http/routes/recipe');
 const patrickRouter = require('./infra/http/routes/patrickStar');
 const redisSession = require('./modules/session/session');
 const { rateLimit } = require('express-rate-limit');
@@ -18,8 +19,6 @@ dotenv.config();
 const app = express();
 //if we are running a proxy (e.g. nginx)
 app.set('trust proxy', 1);
-
-// 6 api calls per minute?
 
 app.use(
   cors({
@@ -47,6 +46,7 @@ app.use(redisSession);
 app.use(limiter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/user', userRouter);
+app.use('/api/v1/recipe', recipeRouter);
 app.use('/patrick', patrickRouter);
 
 // app.post('/api/v1/auth/login', async (req, res) => {

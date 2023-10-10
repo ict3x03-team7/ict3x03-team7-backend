@@ -22,6 +22,7 @@ CREATE TABLE `user` (
     `ProfilePictureID` BINARY(16) NULL DEFAULT (uuid_to_bin(uuid(),true)),
     `MFA_QR` TEXT NULL,
     `MFA_Secret` VARCHAR(255) NULL,
+    `Locked` BOOLEAN NOT NULL DEFAULT false,
 
     UNIQUE INDEX `Email`(`Email`),
     INDEX `ProfilePictureIDFK_idx`(`ProfilePictureID`),

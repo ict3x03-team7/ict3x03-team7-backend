@@ -28,6 +28,7 @@ model user {
   ProfilePictureID Bytes?    @default(dbgenerated("(uuid_to_bin(uuid(),true))")) @db.Binary(16)
   MFA_QR           String?   @db.Text
   MFA_Secret       String?   @db.VarChar(255)
+  Locked           Boolean   @default(false)
   file             file?     @relation(fields: [ProfilePictureID], references: [FileID], onDelete: NoAction, onUpdate: NoAction, map: "ProfilePictureID")
 
   @@index([ProfilePictureID], map: "ProfilePictureIDFK_idx")

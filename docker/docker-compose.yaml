@@ -37,3 +37,19 @@ services:
       --requirepass ${REDIS_PASSWORD}
     volumes:
       - ./redis-cache:/docker-entrypoint-initdb.d/redis-cache
+
+  dependency-check:
+    image: owasp/dependency-check
+    volumes:
+      - ./../../ict3x03-team7-backend:/usr/src/dependency-check/data
+    command:
+      [
+        '--scan',
+        '/usr/src/dependency-check/data',
+        '-f',
+        'HTML',
+        '-o',
+        '/usr/src/dependency-check/data',
+      ]
+    environment:
+      - TZ=UTC
