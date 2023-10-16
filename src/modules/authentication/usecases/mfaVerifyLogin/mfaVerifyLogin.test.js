@@ -1,17 +1,21 @@
 const AuthUserMap = require('../../mapper/authUserMap');
 const mockAuthUser = require('../../testing/mockAuthUser.js');
 const MockAuthUserRepo = require('../../testing/mockAuthUserRepo.js');
-const MFAVerify = require('./mfaVerify');
-const MFAVerifyController = require('./mfaVerifyController');
+const MFAVerifyLogin = require('./mfaVerifyLogin');
+const MFAVerifyLoginController = require('./mfaVerifyLoginController');
 const MockSessionService = require('../../testing/mockSessionService');
 const MockMFAAuthenticator = require('../../testing/mockMFAAuthenticator');
 
-describe('MFA Verify Use Case', () => {
+describe('MFA Login Use Case', () => {
   const mockAuthUserRepo = new MockAuthUserRepo([mockAuthUser]);
   const mockSessionService = new MockSessionService();
   const mockMFAAuthenticator = new MockMFAAuthenticator();
-  const mfaVerify = new MFAVerify(mockAuthUserRepo, mockMFAAuthenticator, mockSessionService);
-  const mfaVerifyController = new MFAVerifyController(mfaVerify);
+  const mfaVerifyLogin = new MFAVerifyLogin(
+    mockAuthUserRepo,
+    mockMFAAuthenticator,
+    mockSessionService,
+  );
+  const mfaVerifyLoginController = new MFAVerifyLoginController(mfaVerifyLogin);
   const mockSuccessResult = AuthUserMap.toMFAVerifyResponseDTO(true);
   const mockFailureResult = AuthUserMap.toMFAVerifyResponseDTO(false);
   const mockAuthEmail = mockAuthUser.getEmail();
@@ -25,7 +29,7 @@ describe('MFA Verify Use Case', () => {
       json: jest.fn(),
     };
 
-    await mfaVerifyController.execute(req, res);
+    await mfaVerifyLoginController.execute(req, res);
 
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith({ result: mockSuccessResult });
@@ -38,7 +42,7 @@ describe('MFA Verify Use Case', () => {
       json: jest.fn(),
     };
 
-    await mfaVerifyController.execute(req, res);
+    await mfaVerifyLoginController.execute(req, res);
 
     expect(res.status).toHaveBeenCalledWith(401);
     expect(res.json).toHaveBeenCalledWith({ result: mockFailureResult });

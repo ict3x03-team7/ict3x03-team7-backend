@@ -10,8 +10,8 @@ const prismaAuthUserRepo = new PrismaAuthUserRepo(PrismaInstance);
 
 const googleAuthenticator = new GoogleAuthenticator(authenticator);
 
-const mfaEnable = new MFAEnable(prismaAuthUserRepo, googleAuthenticator);
+const mfaEnable = new MFAEnable(prismaAuthUserRepo, googleAuthenticator, redisClient);
 
-const mfaEnableController = new MFAEnableController(mfaEnable, redisClient);
+const mfaEnableController = new MFAEnableController(mfaEnable);
 
 module.exports = mfaEnableController;
