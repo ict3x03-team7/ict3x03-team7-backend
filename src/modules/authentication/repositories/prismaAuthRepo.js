@@ -124,11 +124,11 @@ class PrismaAuthRepo extends IAuthRepo {
       throw new Error('Server Error');
     }
   }
-  async resetPassword(userID, newHashedPassword) {
+  async resetPassword(email, newHashedPassword) {
     try {
       const user = await this.prisma.user.update({
         where: {
-          UserID: convertUUIDToBuffer(userID),
+          Email: email,
         },
         include: {
           file: true,
