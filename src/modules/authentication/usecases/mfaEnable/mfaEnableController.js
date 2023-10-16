@@ -11,7 +11,7 @@ class MFAEnableController {
     const requestDTO = new MFAEnableRequestDTO(req.session.userID);
     try {
       const result = await this.MFAVerify.execute(requestDTO);
-      console.log(result);
+      // console.log(result);
       if (!result.isEnabled) {
         res.status(400).json({ result });
       } else {

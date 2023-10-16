@@ -1,5 +1,5 @@
 const AuthUserMap = require('../../mapper/authUserMap');
-const { MFAVerifyRequestDTO } = require('../../dto/mfaVerifyDTO');
+const isValidEmail = require('../../../../shared/utils/validateEmail');
 
 class MFAVerifyLogin {
   constructor(authUserRepo, mfaAuthenticator, sessionService) {
@@ -9,6 +9,9 @@ class MFAVerifyLogin {
   }
 
   async execute(input, req) {
+    if (!isValidEmail(input.email)) {
+      return { Error: 'Invalid Email' };
+    }
     let authUserResult;
     let updateLastLogin;
     try {
