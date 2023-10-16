@@ -4,6 +4,7 @@ const FileMap = require('../../../shared/mapper/fileMap.js');
 const { LoginResponseDTO } = require('./../dto/loginDTO');
 const { MFAVerifyResponseDTO } = require('./../dto/mfaVerifyDTO');
 const { MFAEnableResponseDTO } = require('./../dto/mfaEnableDTO');
+const { VerifyEmailResponseDTO } = require('./../dto/verifyEmailDTO');
 
 class AuthUserMap {
   constructor() {}
@@ -47,6 +48,10 @@ class AuthUserMap {
 
   static toMFAEnableResponseDTO(isEnabled) {
     return new MFAEnableResponseDTO(isEnabled);
+  }
+
+  static toVerifyEmailResponseDTO(isVerified, mfaEnabled) {
+    return new VerifyEmailResponseDTO(isVerified, mfaEnabled);
   }
 }
 

@@ -5,6 +5,7 @@ const mfaVerifyController = require('./../../../modules/authentication/usecases/
 const mfaVerifyLoginController = require('./../../../modules/authentication/usecases/mfaVerifyLogin/index');
 const mfaEnableController = require('./../../../modules/authentication/usecases/mfaEnable/index');
 const logoutController = require('./../../../modules/authentication/usecases/logout/index');
+const verifyEmailController = require('./../../../modules/authentication/usecases/verifyEmail/index');
 const {
   checkAuthentication,
   loginAttempt,
@@ -16,6 +17,10 @@ authRouter.post('/login', loginAttempt, async (req, res) => {
 
 authRouter.post('/login/verify', async (req, res) => {
   mfaVerifyLoginController.execute(req, res);
+});
+
+authRouter.post('/:email/verify', async (req, res) => {
+  verifyEmailController.execute(req, res);
 });
 
 authRouter.post('/verify', async (req, res) => {
