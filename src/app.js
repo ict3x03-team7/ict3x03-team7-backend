@@ -49,32 +49,4 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/recipe', recipeRouter);
 app.use('/patrick', patrickRouter);
 
-// app.post('/api/v1/auth/login', async (req, res) => {
-//   loginController.execute(req, res);
-// });
-
-// app.use(checkAuthentication);
-
-// app.get('/api/v1/user/:userID', async (req, res) => {
-//   getUserController.execute(req, res);
-// });
-
-// //this route will only run after the above middleware
-// app.get('/testSession', (req, res) => {
-//   res.json(req.session);
-// });
-
-// app.get('/testLogout', (req, res) => {
-//   req.session.destroy();
-//   res.json(req.session);
-// });
-
-app.get('/test', (req, res) => {
-  res.json('test test test');
-});
-
-app.get('/adminMessage', (req, res) => {
-  res.json('Admin Admin Admin');
-});
-
 module.exports = app;

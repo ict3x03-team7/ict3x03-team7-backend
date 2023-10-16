@@ -35,14 +35,46 @@ function checkAdminPrivileges(req, res, next) {
 
 function checkAuthorization(req, res, next) {
   //check if session userID is the same as params userID
-  const sessionUserID = req.session.userID;
-  const paramsUserID = req.params.userID ? req.params.userID : null;
-  const bodyUserID = req.body.userID ? req.body.userID : null;
-  if (sessionUserID === paramsUserID || sessionUserID === bodyUserID) {
-    next();
-  } else {
-    res.status(403).json({ Error: 'You are not authorized!' });
+  const userRole = req.session.role;
+  if (userRole === 'Admin') next();
+  else {
+    const sessionUserID = req.session.userID;
+    const paramsUserID = req.params.userID ? req.params.userID : null;
+    const bodyUserID = req.body.userID ? req.body.userID : null;
+    if (sessionUserID === paramsUserID || sessionUserID === bodyUserID) {
+      next();
+    } else {
+      res.status(403).json({ Error: 'You are not authorized!' });
+    }
   }
 }
 
-module.exports = { checkAuthentication, checkAdminPrivileges, checkAuthorization };
+async function loginAttempt(req, res, next) {
+  const email = req.body.email;
+  if (email) {
+    const userKey = `loginAttempts:${email}`;
+    let currentLoginAttempt = await redisClient.get(userKey);
+    // console.log('Existing login attempt:' + currentLoginAttempt);
+
+    let temp;
+    if (currentLoginAttempt) {
+      temp = parseInt(currentLoginAttempt, 10);
+    } else if (!currentLoginAttempt) {
+      redisClient.set(userKey, 0);
+      currentLoginAttempt = await redisClient.get(userKey);
+      // console.log('New login attempt:' + currentLoginAttempt);
+      temp = parseInt(currentLoginAttempt, 0);
+    }
+
+    temp = temp + 1;
+    req.loginAttempts = temp;
+    redisClient.set(userKey, temp);
+    // console.log(await redisClient.get(userKey));
+
+    next();
+  } else {
+    next();
+  }
+}
+
+module.exports = { checkAuthentication, checkAdminPrivileges, checkAuthorization, loginAttempt };

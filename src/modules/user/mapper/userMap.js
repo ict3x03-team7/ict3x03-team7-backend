@@ -5,6 +5,7 @@ const { CreateUserResponseDTO } = require('./../dto/createUserDTO.js');
 const { UpdatePasswordResponseDTO } = require('./../dto/updatePasswordDTO.js');
 const { DeleteUserResponseDTO } = require('./../dto/deleteUserDTO.js');
 const { GetAllUsersResponseDTO } = require('./../dto/getAllUsersDTO.js');
+const { UnlockUserResponseDTO } = require('./../dto/unlockUserDTO.js');
 const FileMap = require('../../../shared/mapper/fileMap.js');
 
 class UserMap {
@@ -39,6 +40,7 @@ class UserMap {
       userProfilePicture,
       userPersistance.MFA_QR,
       userPersistance.MFA_Secret,
+      userPersistance.Locked,
     );
     if (mapped) {
       return mapped;
@@ -60,6 +62,7 @@ class UserMap {
       mappedUser.studentID,
       profilePictureLink ? profilePictureLink : null,
       mappedUser.mfa_qr,
+      mappedUser.locked,
     );
   }
 
@@ -88,9 +91,14 @@ class UserMap {
         user.lastLogin,
         user.studentID,
         user.profilePictureLink,
+        user.locked,
       );
     });
     return allUsersDTOArray;
+  }
+
+  static toUnlockUserResponseDTO(isUnlocked) {
+    return new UnlockUserResponseDTO(isUnlocked);
   }
 }
 

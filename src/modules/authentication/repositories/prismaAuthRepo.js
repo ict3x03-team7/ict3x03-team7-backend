@@ -101,6 +101,29 @@ class PrismaAuthRepo extends IAuthRepo {
       throw new Error('Server Error');
     }
   }
+  async lockUser(email) {
+    try {
+      const userLockResult = await this.prisma.user.update({
+        where: {
+          Email: email,
+        },
+        include: {
+          file: true,
+        },
+        data: {
+          Locked: true,
+        },
+      });
+      let mappedUser;
+      if (userLockResult) {
+        mappedUser = AuthUserMap.toDomain(userLockResult);
+        return mappedUser;
+      }
+    } catch (err) {
+      console.error(err);
+      throw new Error('Server Error');
+    }
+  }
 }
 
 module.exports = PrismaAuthRepo;

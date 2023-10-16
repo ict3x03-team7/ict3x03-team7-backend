@@ -6,9 +6,10 @@ const mfaEnableController = require('./../../../modules/authentication/usecases/
 const logoutController = require('./../../../modules/authentication/usecases/logout/index');
 const {
   checkAuthentication,
+  loginAttempt,
 } = require('./../../../modules/authentication/services/AuthenticationService');
 
-authRouter.post('/login', async (req, res) => {
+authRouter.post('/login', loginAttempt, async (req, res) => {
   loginController.execute(req, res);
 });
 

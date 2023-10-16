@@ -14,6 +14,8 @@ class LoginController {
       const result = await this.Login.execute(requestDTO, req);
       if (result.Error) {
         res.status(400).json({ result });
+      } else if (result.Error === 'Your account has been locked.') {
+        res.status(403).json({ result });
       } else {
         res.status(200).json({ result });
       }

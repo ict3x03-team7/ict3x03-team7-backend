@@ -125,6 +125,30 @@ class PrismaUserRepo extends IUserRepo {
       throw new Error('Server Error');
     }
   }
+  async unlockUser(userID) {
+    try {
+      const user = await this.prisma.user.update({
+        where: {
+          UserID: convertUUIDToBuffer(userID),
+        },
+        include: {
+          file: true,
+        },
+        data: {
+          Locked: false,
+        },
+      });
+      let mappedUser;
+      if (user) {
+        mappedUser = UserMap.toDomain(user);
+        return mappedUser;
+      }
+      return null;
+    } catch (err) {
+      console.error(err);
+      throw new Error('Server Error');
+    }
+  }
 }
 
 module.exports = PrismaUserRepo;

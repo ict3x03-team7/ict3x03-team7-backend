@@ -15,6 +15,7 @@ class User extends Entity {
     profilePicture,
     mfa_qr,
     mfa_secret,
+    locked,
   ) {
     super(id);
     this.firstName = firstName;
@@ -29,6 +30,7 @@ class User extends Entity {
     this.profilePicture = profilePicture;
     this.mfa_qr = mfa_qr;
     this.mfa_secret = mfa_secret;
+    this.locked = locked;
   }
 
   isAdmin() {

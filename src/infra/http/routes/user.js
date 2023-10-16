@@ -5,6 +5,7 @@ const createUserController = require('./../../../modules/user/usecases/createUse
 const updatePasswordController = require('./../../../modules/user/usecases/updatePassword/index');
 const deleteUserController = require('./../../../modules/user/usecases/deleteUser/index');
 const getAllUsersController = require('./../../../modules/user/usecases/getAllUsers/index');
+const unlockUserController = require('./../../../modules/user/usecases/unlockUser/index');
 const {
   checkAuthentication,
   checkAdminPrivileges,
@@ -19,6 +20,10 @@ userRouter.use(checkAuthentication);
 
 userRouter.get('/all', checkAdminPrivileges, async (req, res) => {
   getAllUsersController.execute(req, res);
+});
+
+userRouter.put('/:userID/unlock', checkAdminPrivileges, async (req, res) => {
+  unlockUserController.execute(req, res);
 });
 
 userRouter.get('/:userID', checkAuthorization, async (req, res) => {
