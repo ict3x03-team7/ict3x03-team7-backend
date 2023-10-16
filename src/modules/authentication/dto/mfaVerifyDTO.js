@@ -1,6 +1,6 @@
 class MFAVerifyRequestDTO {
-  constructor(userID, TOTP) {
-    this.userID = userID;
+  constructor(email, TOTP) {
+    this.email = email;
     this.TOTP = TOTP;
   }
 }

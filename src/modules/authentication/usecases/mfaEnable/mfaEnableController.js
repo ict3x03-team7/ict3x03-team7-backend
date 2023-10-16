@@ -1,18 +1,17 @@
-const { MFAVerifyRequestDTO } = require('../../dto/mfaVerifyDTO');
+const { MFAEnableRequestDTO } = require('../../dto/mfaEnableDTO');
 const dotenv = require('dotenv');
 dotenv.config();
 
 class MFAEnableController {
-  constructor(mfaVerify, sessionService) {
+  constructor(mfaVerify) {
     this.MFAVerify = mfaVerify;
-    this.SessionService = sessionService;
   }
 
   async execute(req, res) {
-    const requestDTO = new MFAVerifyRequestDTO(req.session.userID);
-
+    const requestDTO = new MFAEnableRequestDTO(req.session.userID);
     try {
       const result = await this.MFAVerify.execute(requestDTO);
+      console.log(result);
       if (!result.isEnabled) {
         res.status(400).json({ result });
       } else {

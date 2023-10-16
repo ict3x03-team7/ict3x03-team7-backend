@@ -7,7 +7,6 @@ const fs = require('fs');
 const authRouter = require('./infra/http/routes/authentication');
 const userRouter = require('./infra/http/routes/user');
 const recipeRouter = require('./infra/http/routes/recipe');
-const patrickRouter = require('./infra/http/routes/patrickStar');
 const redisSession = require('./modules/session/session');
 const { rateLimit } = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
@@ -47,6 +46,5 @@ app.use(limiter);
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/recipe', recipeRouter);
-app.use('/patrick', patrickRouter);
 
 module.exports = app;

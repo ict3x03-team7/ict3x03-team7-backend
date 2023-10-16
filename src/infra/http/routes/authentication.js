@@ -2,6 +2,7 @@ const express = require('express');
 const authRouter = express.Router();
 const loginController = require('./../../../modules/authentication/usecases/login/index');
 const mfaVerifyController = require('./../../../modules/authentication/usecases/mfaVerify/index');
+const mfaVerifyLoginController = require('./../../../modules/authentication/usecases/mfaVerifyLogin/index');
 const mfaEnableController = require('./../../../modules/authentication/usecases/mfaEnable/index');
 const logoutController = require('./../../../modules/authentication/usecases/logout/index');
 const {
@@ -13,11 +14,15 @@ authRouter.post('/login', loginAttempt, async (req, res) => {
   loginController.execute(req, res);
 });
 
-authRouter.use(checkAuthentication);
+authRouter.post('/login/verify', async (req, res) => {
+  mfaVerifyLoginController.execute(req, res);
+});
 
 authRouter.post('/verify', async (req, res) => {
   mfaVerifyController.execute(req, res);
 });
+
+authRouter.use(checkAuthentication);
 
 authRouter.put('/enable', async (req, res) => {
   mfaEnableController.execute(req, res);

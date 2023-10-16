@@ -2,16 +2,17 @@ const AuthUserMap = require('../../mapper/authUserMap');
 const { MFAVerifyRequestDTO } = require('../../dto/mfaVerifyDTO');
 
 class MFAVerify {
-  constructor(authUserRepo, mfaAuthenticator) {
+  constructor(authUserRepo, mfaAuthenticator, sessionService) {
     this.AuthUserRepo = authUserRepo;
     this.MFAAuthenticator = mfaAuthenticator;
+    this.SessionService = sessionService;
   }
 
   async execute(input) {
     let authUserResult;
     try {
-      authUserResult = await this.AuthUserRepo.getUserByID(input.userID);
-      if (authUserResult == null) return { Error: 'Invalid User ID' };
+      authUserResult = await this.AuthUserRepo.getUserByEmail(input.email);
+      if (authUserResult == null) return { Error: 'Invalid Credentials' };
       const MFASecret = authUserResult.mfa_secret;
       // console.log(authUserResult.id);
       // console.log(MFASecret);
