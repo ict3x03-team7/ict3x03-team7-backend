@@ -15,6 +15,7 @@ class MockAuthUserPersistance {
     ProfilePictureID,
     MFA_QR,
     MFA_Secret,
+    Locked,
     file,
   ) {
     this.UserID = UserID;
@@ -30,6 +31,7 @@ class MockAuthUserPersistance {
     this.ProfilePictureID = ProfilePictureID;
     this.MFA_QR = MFA_QR;
     this.MFA_Secret = MFA_Secret;
+    this.Locked = Locked;
     this.file = file;
   }
 }
@@ -48,6 +50,7 @@ const MockAuthUserPersistance1 = new MockAuthUserPersistance(
   null,
   null,
   null,
+  0,
 );
 
 module.exports = MockAuthUserPersistance1;

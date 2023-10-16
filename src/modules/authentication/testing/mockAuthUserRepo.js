@@ -37,6 +37,13 @@ class MockAuthUserRepo extends IAuthRepo {
       }
     }
   }
+  async lockUser(email) {
+    for (const user of this.mockAuthUsers) {
+      if (user.getEmail() === email) {
+        return user;
+      }
+    }
+  }
 }
 
 module.exports = MockAuthUserRepo;

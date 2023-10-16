@@ -12,6 +12,7 @@ const mockAuthUser = new AuthUser(
   null,
   null,
   null,
+  0,
 );
 
 module.exports = mockAuthUser;

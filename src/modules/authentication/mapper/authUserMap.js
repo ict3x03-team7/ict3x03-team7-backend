@@ -28,6 +28,7 @@ class AuthUserMap {
       userProfilePicture,
       authUserPersistance.MFA_QR,
       authUserPersistance.MFA_Secret,
+      authUserPersistance.Locked,
     );
     if (mapped) {
       return mapped;

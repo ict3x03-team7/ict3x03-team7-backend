@@ -16,11 +16,22 @@ class Login {
       return { Error: 'Invalid Credentials' };
     }
     let authUserResult;
+    let lockUserResult;
     let updateLastLogin;
     let loginSuccess = false;
     try {
       authUserResult = await this.AuthUserRepo.getUserByEmail(input.email);
       if (authUserResult == null) return { Error: 'Invalid Credentials' };
+      // console.log(req.loginAttempts);
+      const isAccountLocked = authUserResult.locked;
+      // console.log(isAccountLocked);
+      if (isAccountLocked) {
+        return { Locked: 'Your account has been locked. Please contact Admin' };
+      }
+      if (req.loginAttempts >= 3) {
+        lockUserResult = await this.AuthUserRepo.lockUser(input.email);
+        return { Locked: 'Your account has been locked. Please contact Admin' };
+      }
       const isPasswordCorrect = await this.HashingService.compare(
         input.password,
         authUserResult.password,
@@ -49,6 +60,8 @@ class Login {
       }
       if (authUserResult) {
         loginSuccess = true;
+        req.loginAttempts = 0;
+        this.SessionService.del(`loginAttempts:${authUserResult.email}`);
       }
       const responseDTO = AuthUserMap.toLoginResponseDTO(loginSuccess);
       return responseDTO;

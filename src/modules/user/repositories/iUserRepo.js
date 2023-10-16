@@ -16,6 +16,7 @@ class IUserRepo {
   async updatePassword(userID, newHashedPassword) {}
   async deleteUserByID(userID) {}
   async getAllUsers() {}
+  async unlockUser(userID) {}
 }
 
 module.exports = IUserRepo;
