@@ -5,6 +5,7 @@ const { LoginResponseDTO } = require('./../dto/loginDTO');
 const { MFAVerifyResponseDTO } = require('./../dto/mfaVerifyDTO');
 const { MFAEnableResponseDTO } = require('./../dto/mfaEnableDTO');
 const { VerifyEmailResponseDTO } = require('./../dto/verifyEmailDTO');
+const { ResetPasswordResponseDTO } = require('../dto/resetPasswordDTO');
 
 class AuthUserMap {
   constructor() {}
@@ -52,6 +53,10 @@ class AuthUserMap {
 
   static toVerifyEmailResponseDTO(isVerified, mfaEnabled) {
     return new VerifyEmailResponseDTO(isVerified, mfaEnabled);
+  }
+
+  static toResetPasswordResponseDTO(isSuccess) {
+    return new ResetPasswordResponseDTO(isSuccess);
   }
 }
 

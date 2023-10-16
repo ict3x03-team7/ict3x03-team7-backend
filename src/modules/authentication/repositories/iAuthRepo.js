@@ -10,6 +10,8 @@ class IAuthRepo {
   async updateLastLogin(userID, lastLogin) {}
 
   async lockUser(email) {}
+
+  async resetPassword(userID, newHashedPassword) {}
 }
 
 module.exports = IAuthRepo;

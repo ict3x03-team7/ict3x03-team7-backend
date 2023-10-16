@@ -44,6 +44,14 @@ class MockAuthUserRepo extends IAuthRepo {
       }
     }
   }
+  async resetPassword(email, newHashedPassword) {
+    for (const user of this.mockAuthUsers) {
+      if (user.getEmail() === email) {
+        user.password = newHashedPassword;
+        return user;
+      }
+    }
+  }
 }
 
 module.exports = MockAuthUserRepo;
