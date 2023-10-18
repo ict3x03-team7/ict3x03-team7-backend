@@ -4,6 +4,11 @@ echo "*****************************************************"
 
 chmod -R 777 *
 
+# Set unix file delimiters
+sed -i -e 's/^M$//' ./start_database.sh
+sed -i -e 's/\r$//' ./mysql_seed/seed.sh
+
+
 # Load environment variables from .env file
 if [ -f .env ]; then
     export $(cat .env | grep -v '#' | awk '/=/ {print $1}')
