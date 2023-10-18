@@ -6,7 +6,7 @@ chmod -R 777 *
 
 # Set unix file delimiters
 sed -i -e 's/^M$//' ./start_database.sh
-sed -i -e 's/\r$//' ./mysql_seed/seed.sh
+sed -i -e 's/\r$//' ./mysql-seed/seed.sh
 
 
 # Load environment variables from .env file
