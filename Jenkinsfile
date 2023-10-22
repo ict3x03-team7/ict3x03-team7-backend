@@ -8,6 +8,12 @@ pipeline {
             }
         }
 
+          stage('Test') {
+            steps {
+                sh './scripts/JenkinsScript.sh'
+            }
+        }
+
 
         
     }
