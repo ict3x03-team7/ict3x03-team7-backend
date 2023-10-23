@@ -13,7 +13,7 @@ class GoogleAuthenticator extends IMFAAuthenticator {
   async enable(userName) {
     const mfa_secret = this.authenticator.generateSecret();
 
-    const uri = this.authenticator.keyuri(userName, 'RecipeHub', mfa_secret);
+    const uri = this.authenticator.keyuri(userName, 'SITRecipe', mfa_secret);
 
     const mfa_qr = await qrcode.toDataURL(uri);
 
