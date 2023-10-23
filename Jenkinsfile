@@ -1,9 +1,8 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18.18.2-alpine3.18'
-            args '-p 8085:8085'
-        }
+    agent any
+
+    tools {
+        nodejs 'NodeJS'
     }
     stages {
         stage('Build') {
