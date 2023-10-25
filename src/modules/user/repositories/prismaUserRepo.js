@@ -52,7 +52,7 @@ class PrismaUserRepo extends IUserRepo {
       Gender: gender,
       MobileNumber: mobileNumber,
       StudentID: studentID,
-      ProfilePictureID: convertUUIDToBuffer(profilePictureID),
+      ProfilePictureID: profilePictureID ? convertUUIDToBuffer(profilePictureID) : null,
       Password: hashedPassword,
     };
 
