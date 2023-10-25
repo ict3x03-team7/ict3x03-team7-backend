@@ -1,13 +1,14 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS'
-    }
     stages {
         stage('Build') {
             steps {
-                sh 'npm install'
+                script {
+                    def nodejsInstallation = tool name: 'NodeJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+                    env.PATH = "${nodejsInstallation}/bin:${env.PATH}"
+                    sh 'npm install'
+                }
             }
         }
         stage('Test') {
