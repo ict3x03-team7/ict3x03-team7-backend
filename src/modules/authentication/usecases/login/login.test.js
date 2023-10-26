@@ -12,7 +12,7 @@ describe('Login Use Case', () => {
   const mockHashingService = new MockHashingService();
   const login = new Login(mockAuthUserRepo, mockHashingService, mockSessionService);
   const loginController = new LoginController(login);
-  const mockAuthUserResult = AuthUserMap.toLoginResponseDTO(true);
+  const mockAuthUserResult = AuthUserMap.toLoginResponseDTO(true, false);
   const mockAuthEmail = mockAuthUser.getEmail();
   const mockAuthPassword = 'Password123';
 

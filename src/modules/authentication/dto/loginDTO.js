@@ -6,8 +6,9 @@ class LoginRequestDTO {
 }
 
 class LoginResponseDTO {
-  constructor(isSuccess) {
+  constructor(isSuccess, mfaEnabled) {
     this.isSuccess = isSuccess;
+    this.mfaEnabled = mfaEnabled;
   }
 }
 
