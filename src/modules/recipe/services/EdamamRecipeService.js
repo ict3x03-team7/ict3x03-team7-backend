@@ -1,8 +1,9 @@
 const axios = require('axios');
 const RecipeMap = require('./../mapper/recipeMap');
-
-class EdamamRecipeService {
+const IRecipeService = require('./iRecipeService');
+class EdamamRecipeService extends IRecipeService {
   constructor(app_id, app_key) {
+    super();
     this.app_id = app_id;
     this.app_key = app_key;
   }
