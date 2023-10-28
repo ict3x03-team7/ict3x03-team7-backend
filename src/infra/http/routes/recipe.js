@@ -5,6 +5,8 @@ const {
   checkAuthentication,
 } = require('./../../../modules/authentication/services/AuthenticationService');
 
+recipeRouter.use(checkAuthentication);
+
 recipeRouter.get('/search', async (req, res) => {
   getRecipeByIngredientsController.execute(req, res);
 });
