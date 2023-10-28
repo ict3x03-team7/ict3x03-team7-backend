@@ -11,7 +11,7 @@ class PrismaUserRepo extends IUserRepo {
 
   async getUserByID(userID) {
     try {
-      const user = await this.prisma.user.findFirst({
+      const user = await this.prisma.user.findUnique({
         where: {
           UserID: convertUUIDToBuffer(userID),
         },

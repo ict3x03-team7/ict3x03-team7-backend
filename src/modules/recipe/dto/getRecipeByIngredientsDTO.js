@@ -6,6 +6,7 @@ class GetRecipeByIngredientsRequestDTO {
 
 class GetRecipeByIngredientsResponseDTO {
   constructor(
+    uri,
     recipeName,
     recipeImage,
     ingredients,
@@ -15,6 +16,7 @@ class GetRecipeByIngredientsResponseDTO {
     serving,
     sourceURL,
   ) {
+    this.uri = uri;
     this.recipeName = recipeName;
     this.recipeImage = recipeImage;
     this.ingredients = ingredients;

@@ -4,7 +4,7 @@ dotenv.config();
 
 //configure redis
 const redisClient = redis.createClient({
-  url: 'redis://localhost:8090',
+  url: `redis://localhost:${process.env.REDIS_PORT}`,
   password: process.env.REDIS_PASSWORD,
 });
 redisClient.connect().catch(console.error);

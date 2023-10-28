@@ -11,7 +11,7 @@ class PrismaAuthRepo extends IAuthRepo {
 
   async getUserByID(userID) {
     try {
-      const user = await this.prisma.user.findFirst({
+      const user = await this.prisma.user.findUnique({
         where: {
           UserID: convertUUIDToBuffer(userID),
         },
@@ -33,7 +33,7 @@ class PrismaAuthRepo extends IAuthRepo {
 
   async getUserByEmail(email) {
     try {
-      const user = await this.prisma.user.findFirst({
+      const user = await this.prisma.user.findUnique({
         where: {
           Email: email,
         },

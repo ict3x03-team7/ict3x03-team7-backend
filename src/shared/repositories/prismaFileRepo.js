@@ -11,7 +11,7 @@ class PrismaFileRepo extends IFileRepo {
 
   async getFileById(fileID) {
     try {
-      const fileResult = await this.prisma.file.findFirst({
+      const fileResult = await this.prisma.file.findUnique({
         where: {
           FileID: generateBuffer(fileID),
         },
