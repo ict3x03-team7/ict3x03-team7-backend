@@ -16,6 +16,7 @@ class GetAllUsersResponseDTO {
     lastLogin,
     studentID,
     profilePictureLink,
+    locked,
   ) {
     this.userID = userID;
     this.firstName = firstName;
@@ -27,6 +28,7 @@ class GetAllUsersResponseDTO {
     this.lastLogin = lastLogin;
     this.studentID = studentID;
     this.profilePictureLink = profilePictureLink;
+    this.locked = locked;
   }
 }
 
