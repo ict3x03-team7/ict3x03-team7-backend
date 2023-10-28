@@ -7,7 +7,7 @@ const {
 
 recipeRouter.use(checkAuthentication);
 
-recipeRouter.post('/search', async (req, res) => {
+recipeRouter.get('/search', (req, res) => {
   getRecipeByIngredientsController.execute(req, res);
 });
 

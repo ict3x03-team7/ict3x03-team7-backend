@@ -6,7 +6,7 @@ class GetRecipeByIngredientsController {
   }
 
   async execute(req, res) {
-    const requestDTO = new GetRecipeByIngredientsRequestDTO(req.body.ingredients);
+    const requestDTO = new GetRecipeByIngredientsRequestDTO(req.query.ingredients);
     try {
       const result = await this.getRecipeByIngredients.execute(requestDTO);
       if (result.Error) {
