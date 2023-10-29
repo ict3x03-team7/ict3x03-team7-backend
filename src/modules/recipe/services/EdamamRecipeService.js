@@ -9,8 +9,13 @@ class EdamamRecipeService extends IRecipeService {
   }
 
   async recipeSearchByIngredient(queries) {
+    let queryParameters;
+    const isArray = Array.isArray(queries);
     try {
-      const queryParameters = queries.map((query) => encodeURIComponent(query)).join('%2C');
+      if (isArray) {
+        queryParameters = queries.map((query) => encodeURIComponent(query)).join('%2C');
+      }
+      queryParameters = queries;
       const url = `https://api.edamam.com/api/recipes/v2?type=public&q=${queryParameters}&app_id=${this.app_id}&app_key=${this.app_key}`;
       const response = await axios.get(url);
       const data = response.data;
