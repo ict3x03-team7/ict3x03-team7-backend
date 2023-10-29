@@ -6,6 +6,7 @@ const { MFAVerifyResponseDTO } = require('./../dto/mfaVerifyDTO');
 const { MFAEnableResponseDTO } = require('./../dto/mfaEnableDTO');
 const { VerifyEmailResponseDTO } = require('./../dto/verifyEmailDTO');
 const { ResetPasswordResponseDTO } = require('../dto/resetPasswordDTO');
+const { GetSessionDetailsResponseDTO } = require('../dto/getSessionDetailsDTO');
 
 class AuthUserMap {
   constructor() {}
@@ -57,6 +58,10 @@ class AuthUserMap {
 
   static toResetPasswordResponseDTO(isSuccess) {
     return new ResetPasswordResponseDTO(isSuccess);
+  }
+
+  static toGetSessionDetailsResponseDTO(userID, role) {
+    return new GetSessionDetailsResponseDTO(userID, role);
   }
 }
 
