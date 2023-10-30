@@ -66,8 +66,8 @@ class UserMap {
     );
   }
 
-  static toCreateUserResponseDTO(isSuccess) {
-    return new CreateUserResponseDTO(isSuccess);
+  static toCreateUserResponseDTO(isSuccess, mfaQR) {
+    return new CreateUserResponseDTO(isSuccess, mfaQR);
   }
 
   static toUpdatePasswordResponseDTO(isSuccess) {

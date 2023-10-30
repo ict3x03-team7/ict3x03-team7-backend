@@ -5,7 +5,7 @@ const MockAuthUserRepo = require('../../testing/mockAuthUserRepo.js');
 const MFAEnable = require('./mfaEnable');
 const MFAEnableController = require('./mfaEnableController');
 const MockSessionService = require('../../testing/mockSessionService');
-const MockMFAAuthenticator = require('../../testing/mockMFAAuthenticator');
+const MockMFAAuthenticator = require('../../../../shared/testing/mockMFAAuthenticator');
 
 describe('MFA Enable Use Case', () => {
   const mockAuthUserRepo = new MockAuthUserRepo([mockAuthUser]);

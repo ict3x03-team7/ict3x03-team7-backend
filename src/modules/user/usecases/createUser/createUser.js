@@ -9,11 +9,12 @@ const UserMap = require('./../../mapper/userMap');
 const File = require('./../../../../shared/entities/file');
 
 class CreateUser {
-  constructor(userRepo, fileRepo, fileService, hashingService) {
+  constructor(userRepo, fileRepo, fileService, hashingService, mfaAuthenticator) {
     this.UserRepo = userRepo;
     this.FileRepo = fileRepo;
     this.FileService = fileService;
     this.HashingService = hashingService;
+    this.MFAAuthenticator = mfaAuthenticator;
   }
 
   async execute(input) {
@@ -32,6 +33,7 @@ class CreateUser {
         //handle fileRepo, fileService executions
         const newFileID = generateUUID();
         const fileToAdd = new File(newFileID, input.metadata.fileName, input.metadata.fileSize);
+        console.log(fileToAdd);
         fileResult = await this.FileRepo.addFile(fileToAdd);
         profilePictureID = fileToAdd.getID();
         if (fileResult) {
@@ -53,13 +55,20 @@ class CreateUser {
         profilePictureID,
       );
       let isUserCreated;
+      let enableMFAResult;
+      let generatedMFAQR;
       if (userResult) {
+        console.log(userResult);
+        const userName = userResult.firstName + ' ' + userResult.lastName;
+        const { mfa_secret, mfa_qr } = await this.MFAAuthenticator.enable(userName);
+        generatedMFAQR = mfa_qr;
+        enableMFAResult = await this.UserRepo.updateMFA(input.userID, mfa_qr, mfa_secret);
         isUserCreated = true;
       } else {
         isUserCreated = false;
       }
       //create user in db
-      const responseDTO = UserMap.toCreateUserResponseDTO(isUserCreated);
+      const responseDTO = UserMap.toCreateUserResponseDTO(isUserCreated, generatedMFAQR);
       return responseDTO;
     } catch (err) {
       console.error(err);

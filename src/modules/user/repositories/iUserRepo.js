@@ -17,6 +17,7 @@ class IUserRepo {
   async deleteUserByID(userID) {}
   async getAllUsers() {}
   async unlockUser(userID) {}
+  async updateMFA(userID, mfa_qr, mfa_secret) {}
 }
 
 module.exports = IUserRepo;

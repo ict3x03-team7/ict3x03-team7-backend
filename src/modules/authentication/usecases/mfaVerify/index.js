@@ -3,7 +3,7 @@ const PrismaAuthUserRepo = require('./../../repositories/prismaAuthRepo.js');
 const MFAVerify = require('./mfaVerify.js');
 const MFAVerifyController = require('./mfaVerifyController.js');
 const { authenticator } = require('otplib');
-const GoogleAuthenticator = require('./../../services/GoogleAuthenticator.js');
+const GoogleAuthenticator = require('./../../../../shared/services/GoogleAuthenticator.js');
 const redisClient = require('./../../../session/redis.js');
 
 const prismaAuthUserRepo = new PrismaAuthUserRepo(PrismaInstance);

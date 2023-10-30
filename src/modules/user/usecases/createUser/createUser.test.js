@@ -9,17 +9,20 @@ const { CreateUserRequestDTO } = require('./../../dto/createUserDTO.js');
 const MockHashingService = require('./../../../../shared/services/mockHashingService.js');
 const MockFileService = require('./../../../../shared/services/mockFileService.js');
 const mockFile = require('./../../../../shared/testing/mockFile.js');
+const MockMFAAuthenticator = require('../../../../shared/testing/mockMFAAuthenticator');
 
 describe('GetUser Use Case', () => {
   const mockUserRepo = new MockUserRepo([mockUser]);
   const mockFileRepo = new MockFileRepo();
   const mockHashingService = new MockHashingService();
   const mockFileService = new MockFileService([mockFile]);
+  const mockMFAAuthenticator = new MockMFAAuthenticator();
   const createUser = new CreateUser(
     mockUserRepo,
     mockFileRepo,
     mockFileService,
     mockHashingService,
+    mockMFAAuthenticator,
   );
   const createUserController = new CreateUserController(createUser);
   const InvalidUserIDmockCreateUserRequestDTO = new CreateUserRequestDTO(

@@ -33,8 +33,9 @@ class CreateUserRequestDTO {
 }
 
 class CreateUserResponseDTO {
-  constructor(isSuccess) {
+  constructor(isSuccess, mfa_qr) {
     this.isSuccess = isSuccess;
+    this.mfa_qr = mfa_qr;
   }
 }
 
