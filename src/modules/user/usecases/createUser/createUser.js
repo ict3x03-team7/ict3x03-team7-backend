@@ -57,7 +57,7 @@ class CreateUser {
       let enableMFAResult;
       let generatedMFAQR;
       if (userResult) {
-        const userName = userResult.firstName + ' ' + userResult.lastName;
+        const userName = input.firstName + ' ' + input.lastName;
         const { mfa_secret, mfa_qr } = await this.MFAAuthenticator.enable(userName);
         generatedMFAQR = mfa_qr;
         enableMFAResult = await this.UserRepo.updateMFA(input.userID, mfa_qr, mfa_secret);
