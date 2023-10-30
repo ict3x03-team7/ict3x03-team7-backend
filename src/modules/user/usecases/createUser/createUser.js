@@ -33,7 +33,6 @@ class CreateUser {
         //handle fileRepo, fileService executions
         const newFileID = generateUUID();
         const fileToAdd = new File(newFileID, input.metadata.fileName, input.metadata.fileSize);
-        console.log(fileToAdd);
         fileResult = await this.FileRepo.addFile(fileToAdd);
         profilePictureID = fileToAdd.getID();
         if (fileResult) {
@@ -58,7 +57,6 @@ class CreateUser {
       let enableMFAResult;
       let generatedMFAQR;
       if (userResult) {
-        console.log(userResult);
         const userName = userResult.firstName + ' ' + userResult.lastName;
         const { mfa_secret, mfa_qr } = await this.MFAAuthenticator.enable(userName);
         generatedMFAQR = mfa_qr;
