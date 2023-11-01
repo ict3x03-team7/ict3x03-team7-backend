@@ -39,7 +39,7 @@ pipeline {
                     //sh "scp -i ${sshKey} -r /home/student56/GitHub/ict3x03-team7-frontend ${remoteUser}@${ec2HostName}:${remoteDirectory}"
 
                     // Copy the backend code to the EC2 instance
-                    sh "scp -i ${sshKey} -r /home/student56/GitHub/ict3x03-team7-backend ${remoteUser}@${ec2HostName}:${remoteDirectory}"
+                    sh 'scp -i ${sshKey} -r /home/student56/GitHub/ict3x03-team7-backend ${remoteUser}@${ec2HostName}:${remoteDirectory}'
                 }
             }
         }
