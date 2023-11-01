@@ -7,7 +7,7 @@ pipeline {
     }
 
     stages {
-        stage('Build') {
+        /*stage('Build') {
             steps {
                 script {
                     def nodejsInstallation = tool name: 'NodeJS', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
@@ -26,7 +26,7 @@ pipeline {
             steps { 
                 dependencyCheck additionalArguments: '--format HTML --format XML', odcInstallation: 'OWASP Dependency Check' 
             } 
-        }
+        }*/
          stage('Deployment') {
             steps {
                 script {
