@@ -16,7 +16,7 @@ pipeline {
                 }
             }
         }
-        stage('Test') {
+        stage('Unit Testing') {
             steps {
                 sh 'chmod +x ./scripts/JenkinsScript.sh'
                 sh './scripts/JenkinsScript.sh'
