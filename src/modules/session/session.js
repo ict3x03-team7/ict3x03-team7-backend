@@ -14,7 +14,7 @@ module.exports = session({
   resave: false, //will not overwrite session
   rolling: true, //will reset expiry to MaxAge
   cookie: {
-    secure: false, //if true need https
+    secure: true, //if true need https
     httpOnly: true, //prevents client side JS from reading the cookie
     maxAge: 1000 * 60 * process.env.SESSION_TIMEOUT, //in milliseconds
     sameSite: 'strict',

@@ -19,16 +19,17 @@ const app = express();
 //if we are running a proxy (e.g. nginx)
 app.set('trust proxy', 1);
 
+const frontendURL = process.env.FRONTEND_URL;
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: frontendURL,
     credentials: true,
   }),
 );
 
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 1 minutes
-  limit: 10,
+  limit: 25,
   standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
   message: 'The server is busy at the moment, please try again.',
