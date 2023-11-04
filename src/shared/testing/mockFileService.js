@@ -1,4 +1,4 @@
-const IFileService = require('./iFileService');
+const IFileService = require('../services/iFileService');
 
 class MockFileService extends IFileService {
   constructor(mockFiles) {

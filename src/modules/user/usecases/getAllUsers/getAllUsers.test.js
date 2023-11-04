@@ -4,7 +4,7 @@ const MockUserRepo = require('../../testing/mockUserRepo.js');
 const GetAllUsers = require('./getAllUsers.js');
 const GetAllUsersController = require('./getAllUsersController.js');
 const { generateUUID } = require('../../../../shared/utils/generateUUID.js');
-const MockFileService = require('./../../../../shared/services/mockFileService.js');
+const MockFileService = require('./../../../../shared/testing/mockFileService.js');
 
 describe('GetAllUsers Use Case', () => {
   const mockUserRepo = new MockUserRepo([mockUser]);

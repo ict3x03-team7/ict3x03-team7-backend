@@ -6,7 +6,7 @@ const DeleteUser = require('./deleteUser.js');
 const DeleteUserController = require('./deleteUserController.js');
 const { generateUUID } = require('./../../../../shared/utils/generateUUID.js');
 const { DeleteUserRequestDTO } = require('./../../dto/deleteUserDTO.js');
-const MockFileService = require('./../../../../shared/services/mockFileService.js');
+const MockFileService = require('./../../../../shared/testing/mockFileService.js');
 const mockFile = require('./../../../../shared/testing/mockFile.js');
 
 describe('GetUser Use Case', () => {

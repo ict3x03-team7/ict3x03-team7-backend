@@ -1,4 +1,4 @@
-const IHashingService = require('./iHashingService');
+const IHashingService = require('../services/iHashingService');
 
 class MockHashingService extends IHashingService {
   constructor() {

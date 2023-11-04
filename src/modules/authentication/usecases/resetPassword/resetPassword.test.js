@@ -3,7 +3,7 @@ const mockAuthUser = require('../../testing/mockAuthUser.js');
 const MockAuthUserRepo = require('../../testing/mockAuthUserRepo.js');
 const ResetPassword = require('./resetPassword');
 const ResetPasswordController = require('./resetPasswordController');
-const MockHashingService = require('./../../../../shared/services/mockHashingService');
+const MockHashingService = require('./../../../../shared/testing/mockHashingService');
 
 describe('Verify Email Use Case', () => {
   const mockAuthUserRepo = new MockAuthUserRepo([mockAuthUser]);

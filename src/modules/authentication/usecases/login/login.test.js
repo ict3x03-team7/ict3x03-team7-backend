@@ -4,7 +4,7 @@ const MockAuthUserRepo = require('./../../testing/mockAuthUserRepo.js');
 const Login = require('./login.js');
 const LoginController = require('./loginController.js');
 const MockSessionService = require('../../testing/mockSessionService');
-const MockHashingService = require('./../../../../shared/services/mockHashingService');
+const MockHashingService = require('./../../../../shared/testing/mockHashingService');
 
 describe('Login Use Case', () => {
   const mockAuthUserRepo = new MockAuthUserRepo([mockAuthUser]);

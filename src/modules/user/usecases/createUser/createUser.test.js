@@ -6,8 +6,8 @@ const CreateUser = require('./createUser.js');
 const CreateUserController = require('.//createUserController.js');
 const { generateUUID } = require('./../../../../shared/utils/generateUUID.js');
 const { CreateUserRequestDTO } = require('./../../dto/createUserDTO.js');
-const MockHashingService = require('./../../../../shared/services/mockHashingService.js');
-const MockFileService = require('./../../../../shared/services/mockFileService.js');
+const MockHashingService = require('./../../../../shared/testing/mockHashingService.js');
+const MockFileService = require('./../../../../shared/testing/mockFileService.js');
 const mockFile = require('./../../../../shared/testing/mockFile.js');
 const MockMFAAuthenticator = require('../../../../shared/testing/mockMFAAuthenticator');
 
