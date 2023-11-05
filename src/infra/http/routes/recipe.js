@@ -3,7 +3,7 @@ const recipeRouter = express.Router();
 const getRecipeByIngredientsController = require('./../../../modules/recipe/usecases/getRecipeByIngredients/index');
 const {
   checkAuthentication,
-} = require('./../../../modules/authentication/services/AuthenticationService');
+} = require('../../../modules/authentication/middleware/AuthenticationMiddleware');
 
 recipeRouter.use(checkAuthentication);
 

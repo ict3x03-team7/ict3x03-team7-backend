@@ -10,7 +10,7 @@ const {
   checkAuthentication,
   checkAdminPrivileges,
   checkAuthorization,
-} = require('./../../../modules/authentication/services/AuthenticationService');
+} = require('../../../modules/authentication/middleware/AuthenticationMiddleware');
 
 userRouter.post('/', async (req, res) => {
   createUserController.execute(req, res);

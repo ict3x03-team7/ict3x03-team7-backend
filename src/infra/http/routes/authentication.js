@@ -11,7 +11,7 @@ const resetPasswordController = require('./../../../modules/authentication/useca
 const {
   checkAuthentication,
   loginAttempt,
-} = require('./../../../modules/authentication/services/AuthenticationService');
+} = require('../../../modules/authentication/middleware/AuthenticationMiddleware');
 
 authRouter.post('/login', loginAttempt, async (req, res) => {
   loginController.execute(req, res);

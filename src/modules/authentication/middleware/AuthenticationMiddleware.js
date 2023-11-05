@@ -1,4 +1,4 @@
-const redisClient = require('./../../../modules/session/redis');
+const redisClient = require('../../session/redis');
 
 function checkAuthentication(req, res, next) {
   if (!req.session || !req.session.userID) {
